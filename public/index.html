@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GoAkt: distributed actor framework for Go</title>
+  <meta name="description" content="Distributed actor framework for Go, inspired by Erlang and Akka. Build reactive and distributed systems with typed actor messages.">
+  <link rel="canonical" href="https://goakt.dev/">
+  <link rel="icon" href="assets/goakt-icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0A0F1C">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GoAkt">
+  <meta property="og:title" content="GoAkt: distributed actor framework for Go">
+  <meta property="og:description" content="Distributed actor framework for Go, inspired by Erlang and Akka. Build reactive and distributed systems with typed actor messages.">
+  <meta property="og:url" content="https://goakt.dev/">
+  <meta property="og:image" content="https://goakt.dev/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GoAkt: distributed actor framework for Go">
+  <meta name="twitter:description" content="Distributed actor framework for Go, inspired by Erlang and Akka. Build reactive and distributed systems with typed actor messages.">
+  <meta name="twitter:image" content="https://goakt.dev/assets/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var saved = localStorage.getItem("goakt-theme");
+        if (saved === "light" || saved === "dark") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#" aria-label="GoAkt home">
+      <svg viewBox="0 0 90 30" role="img" aria-label="GoAkt">
+        <path class="go" d="M10.46 24.43Q8.25 24.43 6.45 23.43Q4.66 22.43 3.6 20.51Q2.54 18.59 2.54 15.83V10.67Q2.54 6.52 4.87 4.3Q7.2 2.07 11.2 2.07Q15.16 2.07 17.32 4.17Q19.49 6.28 19.49 9.87V9.99H15.5V9.75Q15.5 8.61 15.02 7.69Q14.55 6.77 13.59 6.23Q12.64 5.69 11.2 5.69Q9.05 5.69 7.82 7.02Q6.59 8.34 6.59 10.61V15.89Q6.59 18.13 7.82 19.5Q9.05 20.87 11.26 20.87Q13.47 20.87 14.48 19.7Q15.5 18.53 15.5 16.75V16.44H10.4V13H19.49V24H15.74V21.94H15.19Q14.98 22.46 14.5 23.05Q14.02 23.63 13.07 24.03Q12.12 24.43 10.46 24.43Z M30.27 24.43Q28 24.43 26.19 23.51Q24.37 22.59 23.33 20.84Q22.29 19.09 22.29 16.63V16.14Q22.29 13.68 23.33 11.93Q24.37 10.18 26.19 9.26Q28 8.34 30.27 8.34Q32.54 8.34 34.36 9.26Q36.17 10.18 37.21 11.93Q38.26 13.68 38.26 16.14V16.63Q38.26 19.09 37.21 20.84Q36.17 22.59 34.36 23.51Q32.54 24.43 30.27 24.43ZM30.27 20.99Q32.05 20.99 33.22 19.84Q34.39 18.69 34.39 16.54V16.23Q34.39 14.08 33.23 12.93Q32.08 11.78 30.27 11.78Q28.49 11.78 27.32 12.93Q26.16 14.08 26.16 16.23V16.54Q26.16 18.69 27.32 19.84Q28.49 20.99 30.27 20.99Z"/>
+        <path class="akt" d="M39.76 24 45.41 2.5H52.48L58.13 24H53.95L52.78 19.27H45.11L43.94 24ZM46.06 15.52H51.83L49.22 5.05H48.67Z M60.37 24V2.5H64.24V14.39H64.79L69.83 8.77H74.87L67.83 16.14L75.11 24H70.14L64.79 17.95H64.24V24Z M83.07 24Q81.56 24 80.63 23.06Q79.69 22.13 79.69 20.56V11.96H75.88V8.77H79.69V4.04H83.56V8.77H87.74V11.96H83.56V19.88Q83.56 20.81 84.42 20.81H87.37V24Z"/>
+      </svg>
+    </a>
+    <nav class="sections" id="site-nav" aria-label="Site">
+      <a href="#code">Code</a>
+      <a href="#features">Features</a>
+      <a href="#production">Production</a>
+      <a href="#limits">Limits</a>
+      <a href="#benchmarks">Benchmarks</a>
+      <a class="ext" href="https://docs.goakt.dev">Docs</a>
+      <a class="ext" href="https://github.com/Tochemey/goakt">GitHub</a>
+    </nav>
+    <div class="top-actions">
+      <button class="theme-btn" id="theme" type="button" aria-label="Toggle light and dark theme">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      </button>
+      <button class="menu-btn" id="menu" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="icon-open" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="wrap hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Distributed actor framework for Go</p>
+      <h1>Locks, channels, and a broker are three ways to coordinate state. An actor is one.</h1>
+      <p class="lede">GoAkt is a distributed actor framework for Go. Typed messages, supervision, clustering, and Grains behind one API, from a single process to a cluster of nodes.</p>
+      <div class="install">
+        <code>go get github.com/tochemey/goakt/v4</code>
+        <button class="copy" type="button" data-copy="go get github.com/tochemey/goakt/v4">Copy</button>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="https://docs.goakt.dev/getting-started/quickstart">Quickstart
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="https://github.com/Tochemey/goakt">GitHub</a>
+      </div>
+      <p class="prod">In production at <a href="https://www.baki.money/">Baki Money</a> and <a href="https://www.v-app.io/iot-builder-3/">Event Processor</a>. <a class="prod-more" href="#production">Read a production report &#8595;</a></p>
+    </div>
+
+    <div class="hero-art">
+      <svg class="cluster" viewBox="0 0 440 380" role="img" aria-labelledby="cluster-title">
+        <title id="cluster-title">Three GoAkt nodes exchanging messages over every edge</title>
+        <defs>
+          <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.2" fill="var(--grid)"/>
+          </pattern>
+        </defs>
+        <rect width="440" height="380" fill="url(#dots)"/>
+        <g stroke="var(--edge)" stroke-width="2" stroke-linecap="round">
+          <line x1="220" y1="70" x2="90" y2="300"/>
+          <line x1="220" y1="70" x2="350" y2="300"/>
+          <line x1="90" y1="300" x2="350" y2="300"/>
+        </g>
+        <g>
+          <circle class="msg m1" r="5"/>
+          <circle class="msg m2" r="5"/>
+          <circle class="msg m3" r="5"/>
+        </g>
+        <g transform="translate(220 70)">
+          <circle class="node-ring" r="22"/>
+          <circle class="node-core" r="7"/>
+          <text class="nlabel" y="-34">node-1</text>
+        </g>
+        <g transform="translate(90 300)">
+          <circle class="node-ring" r="22"/>
+          <circle class="node-core" r="7"/>
+          <text class="nlabel" y="46">node-2</text>
+        </g>
+        <g transform="translate(350 300)">
+          <circle class="node-ring" r="22"/>
+          <circle class="node-core" r="7"/>
+          <text class="nlabel" y="46">node-3</text>
+        </g>
+      </svg>
+      <div class="art-caption">TELL / ASK, SAME API ON EVERY EDGE</div>
+    </div>
+  </section>
+
+  <section id="code" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Your first actor</p>
+        <h2>One struct, one Receive method, one message at a time.</h2>
+        <p>This is the whole program from the quickstart. Nothing is elided.</p>
+      </div>
+      <div class="code-grid">
+        <aside class="annot">
+          <div>
+            <h3>Messages are plain Go values</h3>
+            <p><code>Greet</code> and <code>Greeting</code> are ordinary structs. Locally they pass by reference. Across nodes, GoAkt serializes them for you.</p>
+          </div>
+          <div>
+            <h3>State needs no locks</h3>
+            <p><code>greeted</code> is touched only inside <code>Receive</code>, and an actor handles one message at a time.</p>
+          </div>
+          <div>
+            <h3>Ask waits for the reply</h3>
+            <p><code>goakt.Ask</code> sends, waits up to the timeout, and hands back whatever the actor answered with <code>ctx.Response</code>.</p>
+          </div>
+          <p><a href="https://docs.goakt.dev/getting-started/quickstart">Full quickstart &#8599;</a></p>
+        </aside>
+        <figure class="code">
+          <figcaption><span class="dot"></span>main.go</figcaption>
+<pre><code><span class="k">package</span> main
+
+<span class="k">import</span> (
+    <span class="s">"context"</span>
+    <span class="s">"os"</span>
+    <span class="s">"os/signal"</span>
+    <span class="s">"syscall"</span>
+    <span class="s">"time"</span>
+
+    goakt <span class="s">"github.com/tochemey/goakt/v4/actor"</span>
+    <span class="s">"github.com/tochemey/goakt/v4/log"</span>
+)
+
+<span class="c">// Greet asks the actor to greet someone; Greeting is its reply.</span>
+<span class="k">type</span> <span class="t">Greet</span> <span class="k">struct</span>{ Name <span class="t">string</span> }
+
+<span class="k">type</span> <span class="t">Greeting</span> <span class="k">struct</span>{ Message <span class="t">string</span> }
+
+<span class="c">// Greeter is the actor. State lives in unexported fields; no locks are</span>
+<span class="c">// needed because an actor processes one message at a time.</span>
+<span class="k">type</span> <span class="t">Greeter</span> <span class="k">struct</span> {
+    greeted <span class="t">int</span>
+}
+
+<span class="k">var</span> _ goakt.<span class="t">Actor</span> = (*<span class="t">Greeter</span>)(<span class="k">nil</span>)
+
+<span class="k">func</span> (x *<span class="t">Greeter</span>) <span class="f">PreStart</span>(*goakt.<span class="t">Context</span>) <span class="t">error</span> { <span class="k">return</span> <span class="k">nil</span> }
+
+<span class="k">func</span> (x *<span class="t">Greeter</span>) <span class="f">Receive</span>(ctx *goakt.<span class="t">ReceiveContext</span>) {
+    <span class="k">switch</span> msg <span class="o">:=</span> ctx.<span class="f">Message</span>().(<span class="k">type</span>) {
+    <span class="k">case</span> *<span class="t">Greet</span>:
+        x.greeted<span class="o">++</span>
+        ctx.<span class="f">Response</span>(&amp;<span class="t">Greeting</span>{Message: <span class="s">"Hello, "</span> <span class="o">+</span> msg.Name <span class="o">+</span> <span class="s">"!"</span>})
+    <span class="k">default</span>:
+        ctx.<span class="f">Unhandled</span>()
+    }
+}
+
+<span class="k">func</span> (x *<span class="t">Greeter</span>) <span class="f">PostStop</span>(*goakt.<span class="t">Context</span>) <span class="t">error</span> { <span class="k">return</span> <span class="k">nil</span> }
+
+<span class="k">func</span> <span class="f">main</span>() {
+    ctx <span class="o">:=</span> context.<span class="f">Background</span>()
+    logger <span class="o">:=</span> log.DefaultLogger
+
+    system, err <span class="o">:=</span> goakt.<span class="f">NewActorSystem</span>(<span class="s">"quickstart"</span>, goakt.<span class="f">WithLogger</span>(logger))
+    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
+        logger.<span class="f">Fatal</span>(err)
+    }
+
+    <span class="k">if</span> err <span class="o">:=</span> system.<span class="f">Start</span>(ctx); err <span class="o">!=</span> <span class="k">nil</span> {
+        logger.<span class="f">Fatal</span>(err)
+    }
+
+    pid, err <span class="o">:=</span> system.<span class="f">Spawn</span>(ctx, <span class="s">"greeter"</span>, &amp;<span class="t">Greeter</span>{})
+    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
+        logger.<span class="f">Fatal</span>(err)
+    }
+
+    response, err <span class="o">:=</span> goakt.<span class="f">Ask</span>(ctx, pid, &amp;<span class="t">Greet</span>{Name: <span class="s">"World"</span>}, time.Second)
+    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
+        logger.<span class="f">Fatal</span>(err)
+    }
+
+    logger.<span class="f">Info</span>(response.(*<span class="t">Greeting</span>).Message)
+
+    sig <span class="o">:=</span> <span class="f">make</span>(<span class="k">chan</span> os.<span class="t">Signal</span>, <span class="n">1</span>)
+    signal.<span class="f">Notify</span>(sig, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+    <span class="o">&lt;-</span>sig
+
+    _ = system.<span class="f">Stop</span>(ctx)
+}</code></pre>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Why actors</p>
+        <h2>Four things you stop writing yourself.</h2>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <h3>Simpler concurrency</h3>
+          <p>Actors process one message at a time. You write plain Go with no locks, channel plumbing, or shared-state bugs.</p>
+        </div>
+        <div class="pillar">
+          <h3>Location transparency</h3>
+          <p>Send a message to a local, remote, or clustered actor with the same API. The framework handles the wire.</p>
+        </div>
+        <div class="pillar">
+          <h3>Resilience by design</h3>
+          <p>Supervision trees and the let-it-crash model keep failures contained and recoverable.</p>
+        </div>
+        <div class="pillar">
+          <h3>Batteries included</h3>
+          <p>Clustering, Grains, CRDTs, streams, scheduling, passivation, and observability, without re-rolling them yourself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="production" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">In production</p>
+        <h2>31 pods, one monolith, and no broker in between.</h2>
+      </div>
+      <div class="proof">
+        <figure class="quote">
+          <blockquote cite="https://github.com/Tochemey/goakt/discussions/1259">
+            <p>One Go application, deliberately kept a monolith, running on Kubernetes at roughly <strong>31 pods</strong> in steady state, with about <strong>16 new pods joining the existing cluster simultaneously during a rolling update</strong>. GoAkt is the entire distribution layer: no MQTT or AMQP broker, no service mesh, no external actor registry. The only stateful things next to the app are a database and Redis.</p>
+          </blockquote>
+          <figcaption><a href="https://github.com/Tochemey/goakt/discussions/1259">StringKe</a>, production report on a self-hosted analytics platform, July 2026</figcaption>
+        </figure>
+        <div class="adopters">
+          <p class="eyebrow">Also running GoAkt</p>
+          <ul class="adopter-list">
+            <li><a href="https://www.baki.money/">Baki Money</a><span>AI-powered expense tracking that turns receipts into stories.</span></li>
+            <li><a href="https://www.v-app.io/iot-builder-3/">Event Processor</a><span>Clustered complex event processing for IoT data streams.</span></li>
+          </ul>
+          <p class="adopt-cta">Running GoAkt in production? <a href="https://github.com/Tochemey/goakt/discussions">Open a discussion</a> to be listed here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="box" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What is in the box</p>
+        <h2>One import path. Every piece links to its guide.</h2>
+      </div>
+      <div class="box">
+        <a class="cell" href="https://docs.goakt.dev/actor/actor-model"><span class="name">Actors</span><span class="desc">Lifecycle, mailboxes, behaviors, stashing, routers.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/actor/supervision"><span class="name">Supervision</span><span class="desc">Directives, restart budgets, backoff, death watch.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/grains/overview"><span class="name">Grains</span><span class="desc">Activated on first message, passivated when idle, addressed by name.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/clustering/overview"><span class="name">Clustering</span><span class="desc">Placement, partition hashing, relocation, singletons.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/advanced/remoting"><span class="name">Remoting</span><span class="desc">Tell and Ask across processes, TLS, pluggable serialization.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point"><span class="name">Reliable delivery</span><span class="desc">Point-to-point and work-pulling delivery across the cluster.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/advanced/pubsub"><span class="name">Pub/Sub</span><span class="desc">Topics on a single node or across the whole cluster.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/advanced/streams"><span class="name">Streams</span><span class="desc">Backpressured, composable stages that talk to actors.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/advanced/distributed-data"><span class="name">Distributed data</span><span class="desc">CRDTs replicated across the cluster.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/actor/scheduling"><span class="name">Scheduling</span><span class="desc">Deferred and recurring messages.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/actor/passivation"><span class="name">Passivation</span><span class="desc">Idle and capacity-based eviction so memory tracks the working set.</span></a>
+        <a class="cell" href="https://docs.goakt.dev/advanced/observability"><span class="name">Observability</span><span class="desc">OpenTelemetry metrics, the event stream, dead letters.</span></a>
+      </div>
+      <p class="providers">Discovery providers: Kubernetes, Consul, etcd, NATS, mDNS, DNS-SD, a static list, or self-managed LAN. <a href="https://docs.goakt.dev/clustering/service-discovery">Service discovery &#8599;</a></p>
+    </div>
+  </section>
+
+  <section id="limits" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Where it does not fit</p>
+        <h2>Three things GoAkt does not try to be.</h2>
+      </div>
+      <ul class="limits">
+        <li>
+          <h3>Cluster nodes are Go processes.</h3>
+          <p>Other languages reach a GoAkt system through the API you expose, not by joining the cluster.</p>
+        </li>
+        <li>
+          <h3>Streams are in-memory.</h3>
+          <p>They replace a broker for fan-out inside a process. They are not a log with retention or replay.</p>
+        </li>
+        <li>
+          <h3>Actor state lives in memory.</h3>
+          <p>Event sourcing, durable state, projections, and sagas are the job of <a href="https://docs.goakt.dev/meta-framework/ego">eGo</a>, built on GoAkt.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="benchmarks" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Numbers</p>
+        <h2>Every figure reproduces from the repository.</h2>
+      </div>
+      <div class="tiles">
+        <div class="tile">
+          <div class="value">12.6M<small>msg/s</small></div>
+          <div class="label">One actor, one sender</div>
+          <div class="scenario">Contention-free dispatch: the per-message cost of Tell.</div>
+        </div>
+        <div class="tile">
+          <div class="value">26.4M<small>msg/s</small></div>
+          <div class="label">Eight actor pairs in parallel</div>
+          <div class="scenario">Aggregate throughput, one private receiver per sender.</div>
+        </div>
+        <div class="tile">
+          <div class="value">1.23<small>KB / actor</small></div>
+          <div class="label">One million live actors</div>
+          <div class="scenario">Resident memory per actor under sustained load.</div>
+        </div>
+      </div>
+      <div class="bench-meta">
+        <dl class="run">
+          <div><dt>Run</dt><dd>2026-09-05</dd></div>
+          <div><dt>Commit</dt><dd><a href="https://github.com/Tochemey/goakt/commit/e3fd47f5">e3fd47f5</a></dd></div>
+          <div><dt>Hardware</dt><dd>Apple M1, 8 threads</dd></div>
+          <div><dt>Go</dt><dd>1.27.1</dd></div>
+        </dl>
+        <p class="bench-note">Throughput figures are the median of ten runs. Memory is resident heap per actor after spawning one million actors. Commands and methodology are in <a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">benchmark/doc.md</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" class="section">
+    <div class="wrap close-grid">
+      <div class="section-head">
+        <p class="eyebrow">Start</p>
+        <h2>Paste the program above into main.go. Then three commands.</h2>
+        <nav class="links" aria-label="Resources">
+          <a href="https://docs.goakt.dev">Docs</a>
+          <a href="https://pkg.go.dev/github.com/tochemey/goakt/v4">API reference</a>
+          <a href="https://github.com/Tochemey/goakt/discussions">Discussions</a>
+          <a href="https://join.slack.com/t/oss-r2l2029/shared_invite/zt-42zcqua8y-unSUH0tFlOQzwT_smzYfOQ">Slack</a>
+          <a href="https://github.com/sponsors/Tochemey">Sponsor</a>
+        </nav>
+      </div>
+      <pre class="terminal"><code><span class="p">$</span> go mod init quickstart
+<span class="p">$</span> go get github.com/tochemey/goakt/v4
+<span class="p">$</span> go run .</code></pre>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <a class="brand" href="#" aria-label="GoAkt">
+      <svg viewBox="0 0 90 30" role="img" aria-label="GoAkt">
+        <path class="go" d="M10.46 24.43Q8.25 24.43 6.45 23.43Q4.66 22.43 3.6 20.51Q2.54 18.59 2.54 15.83V10.67Q2.54 6.52 4.87 4.3Q7.2 2.07 11.2 2.07Q15.16 2.07 17.32 4.17Q19.49 6.28 19.49 9.87V9.99H15.5V9.75Q15.5 8.61 15.02 7.69Q14.55 6.77 13.59 6.23Q12.64 5.69 11.2 5.69Q9.05 5.69 7.82 7.02Q6.59 8.34 6.59 10.61V15.89Q6.59 18.13 7.82 19.5Q9.05 20.87 11.26 20.87Q13.47 20.87 14.48 19.7Q15.5 18.53 15.5 16.75V16.44H10.4V13H19.49V24H15.74V21.94H15.19Q14.98 22.46 14.5 23.05Q14.02 23.63 13.07 24.03Q12.12 24.43 10.46 24.43Z M30.27 24.43Q28 24.43 26.19 23.51Q24.37 22.59 23.33 20.84Q22.29 19.09 22.29 16.63V16.14Q22.29 13.68 23.33 11.93Q24.37 10.18 26.19 9.26Q28 8.34 30.27 8.34Q32.54 8.34 34.36 9.26Q36.17 10.18 37.21 11.93Q38.26 13.68 38.26 16.14V16.63Q38.26 19.09 37.21 20.84Q36.17 22.59 34.36 23.51Q32.54 24.43 30.27 24.43ZM30.27 20.99Q32.05 20.99 33.22 19.84Q34.39 18.69 34.39 16.54V16.23Q34.39 14.08 33.23 12.93Q32.08 11.78 30.27 11.78Q28.49 11.78 27.32 12.93Q26.16 14.08 26.16 16.23V16.54Q26.16 18.69 27.32 19.84Q28.49 20.99 30.27 20.99Z"/>
+        <path class="akt" d="M39.76 24 45.41 2.5H52.48L58.13 24H53.95L52.78 19.27H45.11L43.94 24ZM46.06 15.52H51.83L49.22 5.05H48.67Z M60.37 24V2.5H64.24V14.39H64.79L69.83 8.77H74.87L67.83 16.14L75.11 24H70.14L64.79 17.95H64.24V24Z M83.07 24Q81.56 24 80.63 23.06Q79.69 22.13 79.69 20.56V11.96H75.88V8.77H79.69V4.04H83.56V8.77H87.74V11.96H83.56V19.88Q83.56 20.81 84.42 20.81H87.37V24Z"/>
+      </svg>
+    </a>
+    <span>MIT licensed. &copy; 2026 Tochemey.</span>
+    <nav aria-label="Footer">
+      <a href="https://docs.goakt.dev">Docs</a>
+      <a href="https://pkg.go.dev/github.com/tochemey/goakt/v4">API</a>
+      <a href="https://github.com/Tochemey/goakt">GitHub</a>
+      <a href="https://github.com/Tochemey/goakt/discussions">Discussions</a>
+      <a href="https://github.com/Tochemey/goakt/security/advisories/new">Report a vulnerability</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    function currentTheme() {
+      return root.getAttribute("data-theme") === "light" ? "light" : "dark";
+    }
+
+    var toggle = document.getElementById("theme");
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var next = currentTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("goakt-theme", next); } catch (e) {}
+      });
+    }
+
+    var top = document.getElementById("top");
+    var menu = document.getElementById("menu");
+    var nav = document.getElementById("site-nav");
+
+    function setMenu(open) {
+      top.classList.toggle("open", open);
+      menu.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    if (top && menu && nav) {
+      menu.addEventListener("click", function () {
+        setMenu(!top.classList.contains("open"));
+      });
+      nav.addEventListener("click", function (ev) {
+        if (ev.target.closest("a")) { setMenu(false); }
+      });
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape" && top.classList.contains("open")) { setMenu(false); menu.focus(); }
+      });
+      document.addEventListener("click", function (ev) {
+        if (top.classList.contains("open") && !top.contains(ev.target)) { setMenu(false); }
+      });
+    }
+
+    var buttons = document.querySelectorAll("[data-copy]");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function (ev) {
+        var btn = ev.currentTarget;
+        var text = btn.getAttribute("data-copy");
+        if (!navigator.clipboard) { return; }
+        navigator.clipboard.writeText(text).then(function () {
+          var previous = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = previous; }, 1400);
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

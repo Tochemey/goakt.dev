@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="GoAkt: distributed actor framework for Go">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&amp;family=Inter:wght@600&amp;display=swap");
+    .headline { font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 48px; fill: #E6EBF6; letter-spacing: -0.03em; }
+    .eyebrow { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-weight: 500; font-size: 19px; fill: #3B82F6; letter-spacing: 0.14em; }
+    .domain { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-weight: 500; font-size: 26px; fill: #9AA7BD; letter-spacing: 0.04em; }
+    .label { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-weight: 500; font-size: 15px; fill: #9AA7BD; text-anchor: middle; }
+  </style>
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.4" fill="#3B82F6" fill-opacity="0.22"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.82" cy="0.5" r="0.45">
+      <stop offset="0" stop-color="#3B82F6" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0A0F1C"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <g transform="translate(72 64) scale(3.2)">
+    <path fill="#E8EDF6" d="M10.46 24.43Q8.25 24.43 6.45 23.43Q4.66 22.43 3.6 20.51Q2.54 18.59 2.54 15.83V10.67Q2.54 6.52 4.87 4.3Q7.2 2.07 11.2 2.07Q15.16 2.07 17.32 4.17Q19.49 6.28 19.49 9.87V9.99H15.5V9.75Q15.5 8.61 15.02 7.69Q14.55 6.77 13.59 6.23Q12.64 5.69 11.2 5.69Q9.05 5.69 7.82 7.02Q6.59 8.34 6.59 10.61V15.89Q6.59 18.13 7.82 19.5Q9.05 20.87 11.26 20.87Q13.47 20.87 14.48 19.7Q15.5 18.53 15.5 16.75V16.44H10.4V13H19.49V24H15.74V21.94H15.19Q14.98 22.46 14.5 23.05Q14.02 23.63 13.07 24.03Q12.12 24.43 10.46 24.43Z M30.27 24.43Q28 24.43 26.19 23.51Q24.37 22.59 23.33 20.84Q22.29 19.09 22.29 16.63V16.14Q22.29 13.68 23.33 11.93Q24.37 10.18 26.19 9.26Q28 8.34 30.27 8.34Q32.54 8.34 34.36 9.26Q36.17 10.18 37.21 11.93Q38.26 13.68 38.26 16.14V16.63Q38.26 19.09 37.21 20.84Q36.17 22.59 34.36 23.51Q32.54 24.43 30.27 24.43ZM30.27 20.99Q32.05 20.99 33.22 19.84Q34.39 18.69 34.39 16.54V16.23Q34.39 14.08 33.23 12.93Q32.08 11.78 30.27 11.78Q28.49 11.78 27.32 12.93Q26.16 14.08 26.16 16.23V16.54Q26.16 18.69 27.32 19.84Q28.49 20.99 30.27 20.99Z"/>
+    <path fill="#3B82F6" d="M39.76 24 45.41 2.5H52.48L58.13 24H53.95L52.78 19.27H45.11L43.94 24ZM46.06 15.52H51.83L49.22 5.05H48.67Z M60.37 24V2.5H64.24V14.39H64.79L69.83 8.77H74.87L67.83 16.14L75.11 24H70.14L64.79 17.95H64.24V24Z M83.07 24Q81.56 24 80.63 23.06Q79.69 22.13 79.69 20.56V11.96H75.88V8.77H79.69V4.04H83.56V8.77H87.74V11.96H83.56V19.88Q83.56 20.81 84.42 20.81H87.37V24Z"/>
+  </g>
+
+  <text class="eyebrow" x="72" y="262">DISTRIBUTED ACTOR FRAMEWORK FOR GO</text>
+  <text class="headline" x="72" y="330">Locks, channels, and a broker</text>
+  <text class="headline" x="72" y="390">are three ways to coordinate</text>
+  <text class="headline" x="72" y="450">state. An actor is one.</text>
+  <text class="domain" x="72" y="562">goakt.dev</text>
+
+  <g transform="translate(1000 330)">
+    <g stroke="#2C3A55" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-150" x2="-130" y2="80"/>
+      <line x1="0" y1="-150" x2="130" y2="80"/>
+      <line x1="-130" y1="80" x2="130" y2="80"/>
+    </g>
+    <g fill="#3B82F6">
+      <circle cx="-65" cy="-35" r="6"/>
+      <circle cx="65" cy="-35" r="6"/>
+      <circle cx="0" cy="80" r="6"/>
+    </g>
+    <g>
+      <circle cx="0" cy="-150" r="26" fill="#0F1626" stroke="#3B82F6" stroke-width="4"/>
+      <circle cx="0" cy="-150" r="8" fill="#3B82F6"/>
+      <text class="label" x="0" y="-192">node-1</text>
+    </g>
+    <g>
+      <circle cx="-130" cy="80" r="26" fill="#0F1626" stroke="#3B82F6" stroke-width="4"/>
+      <circle cx="-130" cy="80" r="8" fill="#3B82F6"/>
+      <text class="label" x="-130" y="130">node-2</text>
+    </g>
+    <g>
+      <circle cx="130" cy="80" r="26" fill="#0F1626" stroke="#3B82F6" stroke-width="4"/>
+      <circle cx="130" cy="80" r="8" fill="#3B82F6"/>
+      <text class="label" x="130" y="130">node-3</text>
+    </g>
+  </g>
+</svg>
