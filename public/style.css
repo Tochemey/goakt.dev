@@ -314,13 +314,22 @@ html:not(.js) .menu-btn { display: none; }
   fill: var(--muted);
   text-anchor: middle;
 }
-.cluster .msg { fill: var(--accent); }
-.msg.m1 { animation: m1 2.6s linear infinite; }
-.msg.m2 { animation: m2 3.1s linear infinite 0.6s; }
-.msg.m3 { animation: m3 2.2s linear infinite 1.1s; }
+.cluster .mail-body { fill: var(--accent); stroke: var(--surface); stroke-width: 1.5; }
+.cluster .mail-flap { fill: none; stroke: var(--surface); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* Two messages per edge, one each way, at different speeds so they do not
+   mirror each other. Negative delays start every message mid-flight. */
+.msg.m1 { animation: m1 2.6s linear -1.0s infinite; }
+.msg.m2 { animation: m2 3.1s linear -1.9s infinite; }
+.msg.m3 { animation: m3 2.2s linear -0.7s infinite; }
+.msg.m4 { animation: m4 2.9s linear -2.2s infinite; }
+.msg.m5 { animation: m5 2.4s linear -0.4s infinite; }
+.msg.m6 { animation: m6 3.3s linear -2.6s infinite; }
 @keyframes m1 { from { transform: translate(220px, 70px); } to { transform: translate(90px, 300px); } }
 @keyframes m2 { from { transform: translate(350px, 300px); } to { transform: translate(220px, 70px); } }
 @keyframes m3 { from { transform: translate(90px, 300px); } to { transform: translate(350px, 300px); } }
+@keyframes m4 { from { transform: translate(90px, 300px); } to { transform: translate(220px, 70px); } }
+@keyframes m5 { from { transform: translate(220px, 70px); } to { transform: translate(350px, 300px); } }
+@keyframes m6 { from { transform: translate(350px, 300px); } to { transform: translate(90px, 300px); } }
 .art-caption {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -330,10 +339,14 @@ html:not(.js) .menu-btn { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .msg { animation: none; }
-  .msg.m1 { transform: translate(155px, 185px); }
-  .msg.m2 { transform: translate(285px, 185px); }
-  .msg.m3 { transform: translate(220px, 300px); }
+  /* Same specificity as the .msg.mN rules above, later in the file, so it wins. */
+  .cluster .msg { animation: none; }
+  .msg.m1 { transform: translate(177px, 147px); }
+  .msg.m4 { transform: translate(133px, 223px); }
+  .msg.m5 { transform: translate(263px, 147px); }
+  .msg.m2 { transform: translate(307px, 223px); }
+  .msg.m3 { transform: translate(177px, 300px); }
+  .msg.m6 { transform: translate(263px, 300px); }
   html { scroll-behavior: auto; }
 }
 
