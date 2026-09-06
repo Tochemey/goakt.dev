@@ -540,23 +540,48 @@ html:not(.js) .menu-btn { display: none; }
   color: var(--muted);
 }
 
-/* limits */
-.limits {
+/* use cases */
+.cases {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+}
+.case {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.case h3 { font-size: 1.05rem; }
+.case > p { color: var(--muted); font-size: 0.95rem; }
+.case ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  border-top: 1px solid var(--border);
+  gap: 0.55rem;
 }
-.limits li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.4rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--border);
+.case li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
-.limits h3 { font-size: 1.02rem; }
-.limits p { color: var(--muted); }
+.case li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.case strong { color: var(--text); font-weight: 600; }
+.case a, .cases-note a { color: var(--text); border-bottom: 1px solid var(--border-strong); }
+.case a:hover, .cases-note a:hover { color: var(--accent); border-color: var(--accent); }
+.cases-note { margin-top: 1.75rem; font-size: 0.9rem; color: var(--muted); }
 
 /* close */
 .close-grid {
@@ -644,7 +669,7 @@ html:not(.js) .menu-btn { display: none; }
 
   .section { padding-block: 4.5rem; }
   .section-head { margin-bottom: 2.5rem; }
-  .limits li { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2rem; padding: 1.25rem 0; }
+  .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 2.5rem; }
   .foot nav { margin-left: auto; }
 }
 
@@ -670,6 +695,7 @@ html:not(.js) .menu-btn { display: none; }
   .pillars { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .box { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cell { padding: 1.2rem 1.3rem; }
+  .cases { gap: 2.5rem 4rem; }
   .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bench-meta { grid-template-columns: max-content minmax(0, 1fr); gap: 3rem; align-items: start; }
   .tile { padding: 1.5rem 1.5rem 1.25rem; }

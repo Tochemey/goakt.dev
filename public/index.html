@@ -52,7 +52,7 @@
       <a href="#code">Code</a>
       <a href="#features">Features</a>
       <a href="#production">Production</a>
-      <a href="#limits">Limits</a>
+      <a href="#use-cases">Use cases</a>
       <a href="#benchmarks">Benchmarks</a>
       <a class="ext" href="https://docs.goakt.dev">Docs</a>
       <a class="ext" href="https://github.com/Tochemey/goakt">GitHub</a>
@@ -326,26 +326,85 @@
     </div>
   </section>
 
-  <section id="limits" class="section">
+  <section id="use-cases" class="section">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Where it does not fit</p>
-        <h2>Three things GoAkt does not try to be.</h2>
+        <p class="eyebrow">Where it fits</p>
+        <h2>Systems that are concurrent, stateful, and expected to survive failure.</h2>
+        <p>Each workload below names the features that carry it, so you can judge the fit before writing code.</p>
       </div>
-      <ul class="limits">
-        <li>
-          <h3>Cluster nodes are Go processes.</h3>
-          <p>Other languages reach a GoAkt system through the API you expose, not by joining the cluster.</p>
-        </li>
-        <li>
-          <h3>Streams are in-memory.</h3>
-          <p>They replace a broker for fan-out inside a process. They are not a log with retention or replay.</p>
-        </li>
-        <li>
-          <h3>Actor state lives in memory.</h3>
-          <p>Event sourcing, durable state, projections, and sagas are the job of <a href="https://docs.goakt.dev/meta-framework/ego">eGo</a>, built on GoAkt.</p>
-        </li>
-      </ul>
+      <div class="cases">
+        <div class="case">
+          <h3>Distributed systems and microservices</h3>
+          <ul>
+            <li><strong>Stateful microservices</strong>: keep state next to the compute with <a href="https://docs.goakt.dev/actor/actor-model">actors</a> or <a href="https://docs.goakt.dev/grains/overview">grains</a> and scale horizontally across a <a href="https://docs.goakt.dev/clustering/overview">cluster</a>, instead of round-tripping to a cache on every request.</li>
+            <li><strong>Long-lived processes</strong>: model workflows that outlive a single request; <a href="https://docs.goakt.dev/actor/supervision">supervision</a> restarts failed actors and <a href="https://docs.goakt.dev/actor/relocation">relocation</a> moves them when a node leaves the cluster.</li>
+            <li><strong>Service-to-service messaging</strong>: exchange typed messages asynchronously with <a href="https://docs.goakt.dev/actor/location-transparency">location transparency</a>; the caller does not care which process or node handles them.</li>
+            <li><strong>Event-driven architectures</strong>: build event sourcing and CQRS on <a href="https://docs.goakt.dev/meta-framework/ego">eGo</a>, which uses GoAkt for execution, supervision, clustering, and remoting.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>Real-time systems</h3>
+          <ul>
+            <li><strong>Financial market data</strong>: fan price updates, risk checks, and order flow across <a href="https://docs.goakt.dev/actor/routers">routers</a> with per-instrument actors serializing access to hot state.</li>
+            <li><strong>Gaming servers</strong>: give each player session its own actor or grain; <a href="https://docs.goakt.dev/actor/passivation">passivation</a> reclaims memory when sessions go idle.</li>
+            <li><strong>IoT and edge computing</strong>: represent each device as a digital twin grain, activated on first message and addressable from anywhere in the cluster.</li>
+            <li><strong>Chat and presence</strong>: distribute conversations and notifications over <a href="https://docs.goakt.dev/advanced/pubsub">PubSub</a> topics that work the same in standalone and cluster mode.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>High-performance data processing</h3>
+          <ul>
+            <li><strong>Stream processing</strong>: run fraud detection, anomaly tracking, and alerting pipelines on <a href="https://docs.goakt.dev/advanced/streams">streams</a> backed by actor concurrency.</li>
+            <li><strong>ETL pipelines</strong>: spread batch workloads across worker actors with <a href="https://docs.goakt.dev/clustering/reliable-delivery/work-pulling">work pulling</a>, so fast workers take more of the load and slow ones are never overwhelmed.</li>
+            <li><strong>Event-driven analytics</strong>: subscribe actors to live <a href="https://docs.goakt.dev/advanced/event-streams">event streams</a> and compute on demand as events arrive.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>Fault-tolerant systems</h3>
+          <ul>
+            <li><strong>Self-healing applications</strong>: <a href="https://docs.goakt.dev/actor/supervision">supervision trees</a> restart failing components with directives, restart budgets, and exponential backoff, while the rest of the system keeps serving.</li>
+            <li><strong>High availability</strong>: a <a href="https://docs.goakt.dev/clustering/overview">cluster</a> redistributes actors from a lost node to healthy peers through <a href="https://docs.goakt.dev/actor/relocation">relocation</a>, without an operator in the loop.</li>
+            <li><strong>Replicated state</strong>: share counters, sets, and maps across nodes with conflict-free <a href="https://docs.goakt.dev/advanced/distributed-data">distributed data</a> types that converge without coordination.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>Workflow orchestration and automation</h3>
+          <ul>
+            <li><strong>Business processes</strong>: automate approval chains, payments, and order fulfilment as actors that hold each case's state; eGo adds <a href="https://docs.goakt.dev/meta-framework/ego">saga orchestration</a> when steps span services.</li>
+            <li><strong>Background jobs</strong>: the built-in <a href="https://docs.goakt.dev/actor/scheduling">scheduler</a> delivers a message once after a delay, on an interval, or on a cron expression, to a local or remote actor, with pause, resume, and cancel by reference. In a cluster, a cron schedule registered on every node <a href="https://docs.goakt.dev/actor/scheduling#cluster-wide-single-fire">fires once per tick</a>.</li>
+            <li><strong>Workflow engines</strong>: model multi-step processes with <a href="https://docs.goakt.dev/actor/behaviors">behaviors</a> that switch the message handler as the process advances, and <a href="https://docs.goakt.dev/actor/stashing">stashing</a> to defer messages that arrive too early.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>Security and threat detection</h3>
+          <ul>
+            <li><strong>Intrusion detection</strong>: process log and telemetry streams in real time, one actor per source, and escalate suspicious activity through the actor hierarchy.</li>
+            <li><strong>Bot and DDoS mitigation</strong>: throttle abusive traffic with per-client actors that count, rate-limit, and expire through passivation.</li>
+            <li><strong>Transaction validation</strong>: run validation and consensus steps as isolated actors so one poisoned input cannot corrupt shared state.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>AI and machine learning</h3>
+          <ul>
+            <li><strong>Distributed training coordination</strong>: coordinate workers across a cluster with actor-based scheduling and <a href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point">reliable point-to-point delivery</a>.</li>
+            <li><strong>Real-time inference serving</strong>: pool model workers behind <a href="https://docs.goakt.dev/actor/routers">routers</a> and keep tail latency down with one request in flight per worker.</li>
+            <li><strong>Multi-agent systems</strong>: give every agent an actor with private state, a mailbox, and supervision; agents collaborate by exchanging typed messages.</li>
+          </ul>
+        </div>
+        <div class="case">
+          <h3>AI agents and MCP servers</h3>
+          <p>Actors map naturally onto agent runtimes: an agent is a unit of state, memory, and autonomy that talks to peers through messages.</p>
+          <ul>
+            <li><strong>Agent coordination</strong>: spawn one actor per agent and let the actor hierarchy express delegation and oversight.</li>
+            <li><strong>Tool orchestration</strong>: manage concurrent MCP tools, databases, APIs, and knowledge sources as child actors, each supervised independently.</li>
+            <li><strong>Conversation management</strong>: hold each conversation in a grain that activates on the first message and passivates when the user goes quiet.</li>
+            <li><strong>Agent swarms</strong>: distribute reasoning across a cluster where agents delegate tasks to peers with location-transparent messaging.</li>
+            <li><strong>Resilient pipelines</strong>: supervision restarts a failed stage and <a href="https://docs.goakt.dev/actor/pipeto">PipeTo</a> feeds async results back into the flow.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="cases-note">The <a href="https://github.com/Tochemey/goakt-examples">examples repository</a> has runnable projects for standalone, remoting, and cluster mode.</p>
     </div>
   </section>
 
