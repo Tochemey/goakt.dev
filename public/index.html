@@ -416,12 +416,12 @@
       </div>
       <div class="tiles">
         <div class="tile">
-          <div class="value">12.6M<small>msg/s</small></div>
+          <div class="value">13.2M<small>msg/s</small></div>
           <div class="label">One actor, one sender</div>
           <div class="scenario">Contention-free dispatch: the per-message cost of Tell.</div>
         </div>
         <div class="tile">
-          <div class="value">26.4M<small>msg/s</small></div>
+          <div class="value">27.2M<small>msg/s</small></div>
           <div class="label">Eight actor pairs in parallel</div>
           <div class="scenario">Aggregate throughput, one private receiver per sender.</div>
         </div>
@@ -430,15 +430,20 @@
           <div class="label">One million live actors</div>
           <div class="scenario">Resident memory per actor under sustained load.</div>
         </div>
+        <div class="tile">
+          <div class="value">609<small>B / grain</small></div>
+          <div class="label">One million live grains</div>
+          <div class="scenario">Resident memory per grain under sustained load.</div>
+        </div>
       </div>
       <div class="bench-meta">
         <dl class="run">
-          <div><dt>Run</dt><dd>2026-09-05</dd></div>
-          <div><dt>Commit</dt><dd><a href="https://github.com/Tochemey/goakt/commit/e3fd47f5">e3fd47f5</a></dd></div>
+          <div><dt>Run</dt><dd>2026-09-11</dd></div>
+          <div><dt>Commit</dt><dd><a href="https://github.com/Tochemey/goakt/commit/4eec50ab">4eec50ab</a></dd></div>
           <div><dt>Hardware</dt><dd>Apple M1, 8 threads</dd></div>
           <div><dt>Go</dt><dd>1.27.1</dd></div>
         </dl>
-        <p class="bench-note">Throughput figures are the median of ten runs. Memory is resident heap per actor after spawning one million actors. Commands and methodology are in <a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">benchmark/doc.md</a>.</p>
+        <p class="bench-note">Throughput figures are the median of ten runs. Memory figures are resident heap per actor and per grain after spawning one million actors or activating one million grains. Commands and methodology are in <a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">benchmark/doc.md</a>.</p>
       </div>
     </div>
   </section>
