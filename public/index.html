@@ -53,6 +53,7 @@
       <a href="#features">Features</a>
       <a href="#production">Production</a>
       <a href="#use-cases">Use cases</a>
+      <a href="#agents">AI Agents</a>
       <a href="#benchmarks">Benchmarks</a>
       <a class="ext" href="https://docs.goakt.dev">Docs</a>
       <a class="ext" href="https://github.com/Tochemey/goakt">GitHub</a>
@@ -394,7 +395,7 @@
         </div>
         <div class="case">
           <h3>AI agents and MCP servers</h3>
-          <p>Actors map naturally onto agent runtimes: an agent is a unit of state, memory, and autonomy that talks to peers through messages.</p>
+          <p>Actors map naturally onto agent runtimes: an agent is a unit of state, memory, and autonomy that talks to peers through messages. The <a href="https://docs.goakt.dev/ai-agents/overview">AI agents guide</a> makes the case feature by feature.</p>
           <ul>
             <li><strong>Agent coordination</strong>: spawn one actor per agent and let the actor hierarchy express delegation and oversight.</li>
             <li><strong>Tool orchestration</strong>: manage concurrent MCP tools, databases, APIs, and knowledge sources as child actors, each supervised independently.</li>
@@ -405,6 +406,37 @@
         </div>
       </div>
       <p class="cases-note">The <a href="https://github.com/Tochemey/goakt-examples">examples repository</a> has runnable projects for standalone, remoting, and cluster mode.</p>
+    </div>
+  </section>
+
+  <section id="agents" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">AI agents</p>
+        <h2>An Agent is an actor whose decision is made by a model.</h2>
+        <p>On a message, an actor may send messages, create actors, and choose how it handles the next one. An agent step does the same three things: it calls tools and peers, spawns workers, and updates its memory and plan. GoAkt runs that step without a goroutine per agent, and the guide traces every claim to a documented feature.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <h3>Sessions the runtime manages</h3>
+          <p>One <a href="https://docs.goakt.dev/grains/overview">grain</a> per conversation: activated on the first message, passivated when idle, claimed once across the cluster, relocated on node loss.</p>
+        </div>
+        <div class="pillar">
+          <h3>Model calls that never block</h3>
+          <p><a href="https://docs.goakt.dev/actor/pipeto">PipeTo</a> runs the call off the message loop, and a deferred reply under <a href="https://docs.goakt.dev/grains/reentrancy">reentrancy</a> answers the caller when the model does.</p>
+        </div>
+        <div class="pillar">
+          <h3>Failure handled by the runtime</h3>
+          <p>A failed call comes back as a message. A crashed handler goes to its <a href="https://docs.goakt.dev/actor/supervision">supervisor</a>, with a restart budget and backoff, and no other agent sees a half-finished mutation.</p>
+        </div>
+        <div class="pillar">
+          <h3>Multi-agent by construction</h3>
+          <p>Orchestrators spawn and watch workers, <a href="https://docs.goakt.dev/clustering/reliable-delivery/work-pulling">work-pulling</a> keeps a job alive when its worker dies, and the same code runs in one process or a cluster.</p>
+        </div>
+      </div>
+      <nav class="links" aria-label="AI Agents guide">
+        <a href="https://docs.goakt.dev/ai-agents/overview">Read the AI agents guide</a>
+      </nav>
     </div>
   </section>
 

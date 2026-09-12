@@ -138,7 +138,7 @@ go test -tags scale -run '^TestMillionActorsSustainedLoad$' -v ./benchmark/
 
 - Dark is the default, matching docs.goakt.dev. The header button switches themes and the choice is remembered per browser.
 - Mobile first. Base styles are one column; min-width queries at 560, 760, and 960px add columns. On phones the header holds the wordmark, the theme button, and a menu button. Without JavaScript the links render as a plain row.
-- Section order: hero, code, features, production, what is in the box, limits, numbers, start. Limits sits before Numbers so that the Limits anchor always has enough page below it to land at the top.
+- Section order: hero, code, features, production, what is in the box, use cases, AI agents, benchmarks, start. AI agents sits after the use cases so the general fit comes before the specific one, and links to the AI agents guide on docs.goakt.dev.
 - Benchmark tiles show only the value, a label, and one line of scenario. Commands and benchmark names live in `benchmark/doc.md`, so they cannot drift.
 - Nothing on the page goes stale on its own: no release numbers, no star counts. Only the benchmark row carries a date, and it says which commit it came from.
 - Relative links only, so the page works at the `tochemey.github.io/goakt.dev` staging path as well as at the apex.
