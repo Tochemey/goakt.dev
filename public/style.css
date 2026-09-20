@@ -481,8 +481,6 @@ html:not(.js) .menu-btn { display: none; }
 .cell .name::after { content: "\2197"; color: var(--muted); font-size: 0.8em; opacity: 0; transition: opacity 120ms; }
 .cell:hover .name::after { opacity: 1; }
 .cell .desc { color: var(--muted); font-size: 0.9rem; }
-.providers { margin-top: 1.25rem; font-size: 0.9rem; color: var(--muted); }
-.providers a { color: var(--text); border-bottom: 1px solid var(--border-strong); }
 
 /* benchmarks */
 .tiles {
