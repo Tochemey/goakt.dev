@@ -22,8 +22,8 @@
   <meta name="twitter:image" content="https://goakt.dev/assets/og.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css?v=3">
   <script>
     (function () {
       document.documentElement.classList.add("js");
@@ -73,82 +73,109 @@
 <main id="main">
 
   <section class="wrap hero">
-    <div class="hero-copy">
-      <p class="eyebrow">Distributed actor framework for Go</p>
-      <h1>Locks, channels, and a broker are three ways to coordinate state. An actor is one.</h1>
-      <p class="lede">GoAkt is a distributed actor framework for Go. Typed messages, supervision, clustering, and Grains behind one API, from a single process to a cluster of nodes.</p>
-      <div class="install">
-        <code>go get github.com/tochemey/goakt/v4</code>
-        <button class="copy" type="button" data-copy="go get github.com/tochemey/goakt/v4">Copy</button>
+    <p class="eyebrow">Distributed actor framework for Go</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>GoAkt: the actor model <em>for Go</em></h1>
+        <p class="hero-sub">Locks, channels, and a broker are three ways to coordinate state. An actor is one.</p>
+        <p class="lede">GoAkt is a distributed actor framework for Go. Typed messages, supervision, clustering, and Grains behind one API, from a single process to a cluster of nodes.</p>
+        <div class="install">
+          <code>go get github.com/tochemey/goakt/v4</code>
+          <button class="copy" type="button" data-copy="go get github.com/tochemey/goakt/v4">Copy</button>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="https://docs.goakt.dev/getting-started/quickstart">Quickstart
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn" href="https://github.com/Tochemey/goakt">GitHub</a>
+        </div>
+        <p class="prod">In production at <a href="https://www.baki.money/">Baki Money</a> and on a 31-pod analytics platform. <a class="prod-more" href="#production">Read the production report &#8595;</a></p>
       </div>
-      <div class="cta">
-        <a class="btn primary" href="https://docs.goakt.dev/getting-started/quickstart">Quickstart
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn" href="https://github.com/Tochemey/goakt">GitHub</a>
-      </div>
-      <p class="prod">In production at <a href="https://www.baki.money/">Baki Money</a> and <a href="https://www.v-app.io/iot-builder-3/">Event Processor</a>. <a class="prod-more" href="#production">Read a production report &#8595;</a></p>
-    </div>
 
-    <div class="hero-art">
-      <svg class="cluster" viewBox="0 0 440 380" role="img" aria-labelledby="cluster-title">
-        <title id="cluster-title">Three GoAkt nodes exchanging messages over every edge</title>
-        <defs>
-          <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
-            <circle cx="1.5" cy="1.5" r="1.2" fill="var(--grid)"/>
-          </pattern>
-        </defs>
-        <rect width="440" height="380" fill="url(#dots)"/>
-        <g stroke="var(--edge)" stroke-width="2" stroke-linecap="round">
-          <line x1="220" y1="70" x2="90" y2="300"/>
-          <line x1="220" y1="70" x2="350" y2="300"/>
-          <line x1="90" y1="300" x2="350" y2="300"/>
-        </g>
-        <g>
-          <g class="msg m1">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-          <g class="msg m2">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-          <g class="msg m3">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-          <g class="msg m4">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-          <g class="msg m5">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-          <g class="msg m6">
-            <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
-            <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
-          </g>
-        </g>
-        <g transform="translate(220 70)">
-          <circle class="node-ring" r="22"/>
-          <circle class="node-core" r="7"/>
-          <text class="nlabel" y="-34">node-1</text>
-        </g>
-        <g transform="translate(90 300)">
-          <circle class="node-ring" r="22"/>
-          <circle class="node-core" r="7"/>
-          <text class="nlabel" y="46">node-2</text>
-        </g>
-        <g transform="translate(350 300)">
-          <circle class="node-ring" r="22"/>
-          <circle class="node-core" r="7"/>
-          <text class="nlabel" y="46">node-3</text>
-        </g>
-      </svg>
-      <div class="art-caption">TELL / ASK, SAME API ON EVERY EDGE</div>
+      <div class="card stats">
+        <p class="eyebrow">By the numbers</p>
+        <dl class="stat-list">
+          <div><dt>One actor, one sender</dt><dd>13.2M<small>msg/s</small></dd></div>
+          <div><dt>Eight actor pairs in parallel</dt><dd>27.2M<small>msg/s</small></dd></div>
+          <div><dt>Per actor, one million live</dt><dd>1.23<small>KB</small></dd></div>
+          <div><dt>Per grain, one million live</dt><dd>609<small>B</small></dd></div>
+        </dl>
+        <a class="card-link" href="#benchmarks">Run details and method <span aria-hidden="true">&#8595;</span></a>
+      </div>
     </div>
   </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: how-it-works</span></div>
+
+  <section id="how-it-works" class="section">
+    <div class="wrap flow">
+      <div class="section-head">
+        <p class="eyebrow">Actors in action</p>
+        <h2>Tell and Ask are the same call on every edge.</h2>
+        <p>Actors keep their state private and talk only through messages. Tell sends and moves on. Ask sends and waits for the reply. The call stays the same whether the receiver runs in this process or on another node, which the docs call <a href="https://docs.goakt.dev/actor/location-transparency">location transparency</a>.</p>
+      </div>
+      <figure class="card diagram">
+        <svg class="cluster" viewBox="0 0 440 380" role="img" aria-labelledby="cluster-title">
+          <title id="cluster-title">Three GoAkt nodes exchanging messages over every edge</title>
+          <defs>
+            <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.2" fill="var(--grid)"/>
+            </pattern>
+          </defs>
+          <rect width="440" height="380" fill="url(#dots)"/>
+          <g stroke="var(--edge)" stroke-width="2" stroke-linecap="round">
+            <line x1="220" y1="70" x2="90" y2="300"/>
+            <line x1="220" y1="70" x2="350" y2="300"/>
+            <line x1="90" y1="300" x2="350" y2="300"/>
+          </g>
+          <g>
+            <g class="msg m1">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+            <g class="msg m2">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+            <g class="msg m3">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+            <g class="msg m4">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+            <g class="msg m5">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+            <g class="msg m6">
+              <rect class="mail-body" x="-10" y="-7" width="20" height="14" rx="2.2"/>
+              <path class="mail-flap" d="M-8.9 -4.4 L0 0.7 L8.9 -4.4"/>
+            </g>
+          </g>
+          <g transform="translate(220 70)">
+            <circle class="node-ring" r="22"/>
+            <circle class="node-core" r="7"/>
+            <text class="nlabel" y="-34">node-1</text>
+          </g>
+          <g transform="translate(90 300)">
+            <circle class="node-ring" r="22"/>
+            <circle class="node-core" r="7"/>
+            <text class="nlabel" y="46">node-2</text>
+          </g>
+          <g transform="translate(350 300)">
+            <circle class="node-ring" r="22"/>
+            <circle class="node-core" r="7"/>
+            <text class="nlabel" y="46">node-3</text>
+          </g>
+        </svg>
+        <figcaption>Tell / Ask, same API on every edge</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: code</span></div>
 
   <section id="code" class="section">
     <div class="wrap">
@@ -251,26 +278,28 @@
     </div>
   </section>
 
+  <div class="wrap divider" aria-hidden="true"><span>ref: features</span></div>
+
   <section id="features" class="section">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Why actors</p>
         <h2>Four things you stop writing yourself.</h2>
       </div>
-      <div class="pillars">
-        <div class="pillar">
+      <div class="why">
+        <div class="why-row">
           <h3>Simpler concurrency</h3>
           <p>Actors process one message at a time. You write plain Go with no locks, channel plumbing, or shared-state bugs.</p>
         </div>
-        <div class="pillar">
+        <div class="why-row">
           <h3>Location transparency</h3>
           <p>Send a message to a local, remote, or clustered actor with the same API. The framework handles the wire.</p>
         </div>
-        <div class="pillar">
+        <div class="why-row">
           <h3>Resilience by design</h3>
           <p>Supervision trees and the let-it-crash model keep failures contained and recoverable.</p>
         </div>
-        <div class="pillar">
+        <div class="why-row">
           <h3>Batteries included</h3>
           <p>Clustering, Grains, CRDTs, streams, scheduling, passivation, and observability, without re-rolling them yourself.</p>
         </div>
@@ -278,30 +307,68 @@
     </div>
   </section>
 
+  <div class="wrap divider" aria-hidden="true"><span>ref: production</span></div>
+
   <section id="production" class="section">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">In production</p>
         <h2>31 pods, one monolith, and no broker in between.</h2>
+        <p>A self-hosted analytics platform runs as one Go monolith on Kubernetes at about 31 pods. GoAkt is the entire distribution layer: no message broker, no service mesh, and no external actor registry.</p>
       </div>
       <div class="proof">
-        <figure class="quote">
-          <blockquote cite="https://github.com/Tochemey/goakt/discussions/1259">
-            <p>One Go application, deliberately kept a monolith, running on Kubernetes at roughly <strong>31 pods</strong> in steady state, with about <strong>16 new pods joining the existing cluster simultaneously during a rolling update</strong>. GoAkt is the entire distribution layer: no MQTT or AMQP broker, no service mesh, no external actor registry. The only stateful things next to the app are a database and Redis.</p>
-          </blockquote>
-          <figcaption><a href="https://github.com/Tochemey/goakt/discussions/1259">StringKe</a>, production report on a self-hosted analytics platform, July 2026</figcaption>
-        </figure>
-        <div class="adopters">
-          <p class="eyebrow">Also running GoAkt</p>
-          <ul class="adopter-list">
-            <li><a href="https://www.baki.money/">Baki Money</a><span>AI-powered expense tracking that turns receipts into stories.</span></li>
-            <li><a href="https://www.v-app.io/iot-builder-3/">Event Processor</a><span>Clustered complex event processing for IoT data streams.</span></li>
-          </ul>
+        <div class="card report">
+          <p class="eyebrow">In their words</p>
+          <figure class="quote">
+            <blockquote cite="https://github.com/Tochemey/goakt/discussions/1259">
+              <p>The headline is that <strong>the actor core has not been a source of surprises</strong>. Message passing, supervision, placement, and grain single activation behave exactly as documented under steady state, and none of our production incidents in this stack originated there.</p>
+            </blockquote>
+            <figcaption><a href="https://github.com/Tochemey/goakt/discussions/1259">StringKe</a>, production report on a self-hosted analytics platform, July 2026</figcaption>
+          </figure>
+          <dl class="uses">
+            <div>
+              <dt>Inbound connections</dt>
+              <dd>Each WebSocket or SSE connection is an actor with a cluster-wide name, so delivering to a user is a Tell instead of a Redis lookup.</dd>
+            </div>
+            <div>
+              <dt>Outbound integrations</dt>
+              <dd>One grain per third-party connection, activated exactly once across the cluster.</dd>
+            </div>
+            <div>
+              <dt>Reporting</dt>
+              <dd>Aggregations run as map and reduce over messages, with mailbox back-pressure.</dd>
+            </div>
+            <div>
+              <dt>Scheduled work</dt>
+              <dd>Cluster single-fire cron lets the external scheduler retire.</dd>
+            </div>
+          </dl>
+          <div class="report-foot">
+            <p class="report-note">Two issues came up, one at startup and one during rolling updates. Both are fixed upstream, in <a href="https://github.com/Tochemey/goakt/pull/1253">#1253</a> and <a href="https://github.com/Tochemey/goakt/pull/1258">#1258</a>.</p>
+            <a class="card-link" href="https://github.com/Tochemey/goakt/discussions/1259">Read the full report <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="card adopters">
+          <div class="adopter-group">
+            <p class="eyebrow" id="adopt-live">Also in production</p>
+            <ul class="adopter-list" aria-labelledby="adopt-live">
+              <li><a href="https://www.baki.money/">Baki Money</a><span>AI-powered expense tracking that turns receipts into stories. Actors cache the app's data today, with wider use planned.</span></li>
+            </ul>
+          </div>
+          <div class="adopter-group">
+            <p class="eyebrow" id="adopt-building">Being built on GoAkt</p>
+            <ul class="adopter-list" aria-labelledby="adopt-building">
+              <li><a href="https://www.v-app.io/iot-builder-3/">V-App IoT Builder</a><span>Clustered complex event processor. Users draw the rules applied to incoming sensor data.</span></li>
+              <li><a href="https://github.com/Tochemey/goakt/discussions/1361#discussioncomment-18411233">Galaxy</a><span>Distributed real-time game platform. Clustered actors and grains hold player state, matchmaking lobbies, and game sessions.</span></li>
+            </ul>
+          </div>
           <p class="adopt-cta">Running GoAkt in production? <a href="https://github.com/Tochemey/goakt/discussions/new?category=show-and-tell&amp;title=Production%20report%3A%20">Write a short report</a> to be listed here, or leave a note in the <a href="https://github.com/Tochemey/goakt/discussions/1361">feedback thread</a>.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: box</span></div>
 
   <section id="box" class="section">
     <div class="wrap">
@@ -309,22 +376,57 @@
         <p class="eyebrow">What is in the box</p>
         <h2>One import path. Every piece links to its guide.</h2>
       </div>
-      <div class="box">
-        <a class="cell" href="https://docs.goakt.dev/actor/actor-model"><span class="name">Actors</span><span class="desc">Lifecycle, mailboxes, behaviors, stashing, routers.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/actor/supervision"><span class="name">Supervision</span><span class="desc">Directives, restart budgets, backoff, death watch.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/grains/overview"><span class="name">Grains</span><span class="desc">Activated on first message, passivated when idle, addressed by name.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/clustering/overview"><span class="name">Clustering</span><span class="desc">Placement, partition hashing, relocation, singletons.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/advanced/remoting"><span class="name">Remoting</span><span class="desc">Tell and Ask across processes, TLS, pluggable serialization.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point"><span class="name">Reliable delivery</span><span class="desc">Point-to-point and work-pulling delivery across the cluster.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/advanced/pubsub"><span class="name">Pub/Sub</span><span class="desc">Topics on a single node or across the whole cluster.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/advanced/streams"><span class="name">Streams</span><span class="desc">Backpressured, composable stages that talk to actors.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/advanced/distributed-data"><span class="name">Distributed data</span><span class="desc">CRDTs replicated across the cluster.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/actor/scheduling"><span class="name">Scheduling</span><span class="desc">Deferred and recurring messages.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/actor/passivation"><span class="name">Passivation</span><span class="desc">Idle and capacity-based eviction so memory tracks the working set.</span></a>
-        <a class="cell" href="https://docs.goakt.dev/advanced/observability"><span class="name">Observability</span><span class="desc">OpenTelemetry metrics, the event stream, dead letters.</span></a>
+      <div class="modules">
+        <a class="card module" href="https://docs.goakt.dev/actor/actor-model">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h5.5M5 9.5 7.5 12 5 14.5"/><circle cx="15.5" cy="12" r="6"/><circle cx="15.5" cy="12" r="1.75" fill="currentColor" stroke="none"/></svg>
+          <h3>Actors</h3>
+          <p>Lifecycle, mailboxes, behaviors, stashing, routers.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card module" href="https://docs.goakt.dev/actor/supervision">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/><path d="M12 7.5v4M5.5 16v-2.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2V16"/></svg>
+          <h3>Supervision</h3>
+          <p>Directives, restart budgets, backoff, death watch.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card module" href="https://docs.goakt.dev/grains/overview">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.5 3.5"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>
+          <h3>Grains</h3>
+          <p>Activated on first message, passivated when idle, addressed by name.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card module" href="https://docs.goakt.dev/clustering/overview">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M10.6 7.6 6.4 15.4M13.4 7.6l4.2 7.8M8 18h8"/></svg>
+          <h3>Clustering</h3>
+          <p>Placement, partition hashing, relocation, singletons.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card module" href="https://docs.goakt.dev/advanced/remoting">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="4.5" cy="12" r="2.5"/><circle cx="19.5" cy="12" r="2.5"/><path d="M8.5 9h7M13.5 7l2 2-2 2M15.5 15h-7M10.5 13l-2 2 2 2"/></svg>
+          <h3>Remoting</h3>
+          <p>Tell and Ask across processes, TLS, pluggable serialization.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a class="card module" href="https://docs.goakt.dev/advanced/streams">
+          <svg class="module-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="9.5" y="9" width="5" height="6" rx="1"/><path d="M7 12h2.5M14.5 12h7M19 9.5l2.5 2.5-2.5 2.5"/></svg>
+          <h3>Streams</h3>
+          <p>Backpressured, composable stages that talk to actors.</p>
+          <span class="card-link">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
       </div>
+      <p class="eyebrow more-label">Also in the box</p>
+      <ul class="more">
+        <li><a href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point"><span class="name">Reliable delivery</span><span class="desc">Point-to-point and work-pulling delivery across the cluster.</span></a></li>
+        <li><a href="https://docs.goakt.dev/advanced/pubsub"><span class="name">Pub/Sub</span><span class="desc">Topics on a single node or across the whole cluster.</span></a></li>
+        <li><a href="https://docs.goakt.dev/advanced/distributed-data"><span class="name">Distributed data</span><span class="desc">CRDTs replicated across the cluster.</span></a></li>
+        <li><a href="https://docs.goakt.dev/actor/scheduling"><span class="name">Scheduling</span><span class="desc">Deferred and recurring messages.</span></a></li>
+        <li><a href="https://docs.goakt.dev/actor/passivation"><span class="name">Passivation</span><span class="desc">Idle and capacity-based eviction so memory tracks the working set.</span></a></li>
+        <li><a href="https://docs.goakt.dev/advanced/observability"><span class="name">Observability</span><span class="desc">OpenTelemetry metrics, the event stream, dead letters.</span></a></li>
+      </ul>
     </div>
   </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: use-cases</span></div>
 
   <section id="use-cases" class="section">
     <div class="wrap">
@@ -334,79 +436,121 @@
         <p>Each workload below names the features that carry it, so you can judge the fit before writing code.</p>
       </div>
       <div class="cases">
-        <div class="case">
-          <h3>Distributed systems and microservices</h3>
-          <ul>
-            <li><strong>Stateful microservices</strong>: keep state next to the compute with <a href="https://docs.goakt.dev/actor/actor-model">actors</a> or <a href="https://docs.goakt.dev/grains/overview">grains</a> and scale horizontally across a <a href="https://docs.goakt.dev/clustering/overview">cluster</a>, instead of round-tripping to a cache on every request.</li>
-            <li><strong>Long-lived processes</strong>: model workflows that outlive a single request; <a href="https://docs.goakt.dev/actor/supervision">supervision</a> restarts failed actors and <a href="https://docs.goakt.dev/actor/relocation">relocation</a> moves them when a node leaves the cluster.</li>
-            <li><strong>Service-to-service messaging</strong>: exchange typed messages asynchronously with <a href="https://docs.goakt.dev/actor/location-transparency">location transparency</a>; the caller does not care which process or node handles them.</li>
-            <li><strong>Event-driven architectures</strong>: build event sourcing and CQRS on <a href="https://docs.goakt.dev/meta-framework/ego">eGo</a>, which uses GoAkt for execution, supervision, clustering, and remoting.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>Real-time systems</h3>
-          <ul>
-            <li><strong>Financial market data</strong>: fan price updates, risk checks, and order flow across <a href="https://docs.goakt.dev/actor/routers">routers</a> with per-instrument actors serializing access to hot state.</li>
-            <li><strong>Gaming servers</strong>: give each player session its own actor or grain; <a href="https://docs.goakt.dev/actor/passivation">passivation</a> reclaims memory when sessions go idle.</li>
-            <li><strong>IoT and edge computing</strong>: represent each device as a digital twin grain, activated on first message and addressable from anywhere in the cluster.</li>
-            <li><strong>Chat and presence</strong>: distribute conversations and notifications over <a href="https://docs.goakt.dev/advanced/pubsub">PubSub</a> topics that work the same in standalone and cluster mode.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>High-performance data processing</h3>
-          <ul>
-            <li><strong>Stream processing</strong>: run fraud detection, anomaly tracking, and alerting pipelines on <a href="https://docs.goakt.dev/advanced/streams">streams</a> backed by actor concurrency.</li>
-            <li><strong>ETL pipelines</strong>: spread batch workloads across worker actors with <a href="https://docs.goakt.dev/clustering/reliable-delivery/work-pulling">work pulling</a>, so fast workers take more of the load and slow ones are never overwhelmed.</li>
-            <li><strong>Event-driven analytics</strong>: subscribe actors to live <a href="https://docs.goakt.dev/advanced/event-streams">event streams</a> and compute on demand as events arrive.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>Fault-tolerant systems</h3>
-          <ul>
-            <li><strong>Self-healing applications</strong>: <a href="https://docs.goakt.dev/actor/supervision">supervision trees</a> restart failing components with directives, restart budgets, and exponential backoff, while the rest of the system keeps serving.</li>
-            <li><strong>High availability</strong>: a <a href="https://docs.goakt.dev/clustering/overview">cluster</a> redistributes actors from a lost node to healthy peers through <a href="https://docs.goakt.dev/actor/relocation">relocation</a>, without an operator in the loop.</li>
-            <li><strong>Replicated state</strong>: share counters, sets, and maps across nodes with conflict-free <a href="https://docs.goakt.dev/advanced/distributed-data">distributed data</a> types that converge without coordination.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>Workflow orchestration and automation</h3>
-          <ul>
-            <li><strong>Business processes</strong>: automate approval chains, payments, and order fulfilment as actors that hold each case's state; eGo adds <a href="https://docs.goakt.dev/meta-framework/ego">saga orchestration</a> when steps span services.</li>
-            <li><strong>Background jobs</strong>: the built-in <a href="https://docs.goakt.dev/actor/scheduling">scheduler</a> delivers a message once after a delay, on an interval, or on a cron expression, to a local or remote actor, with pause, resume, and cancel by reference. In a cluster, a cron schedule registered on every node <a href="https://docs.goakt.dev/actor/scheduling#cluster-wide-single-fire">fires once per tick</a>.</li>
-            <li><strong>Workflow engines</strong>: model multi-step processes with <a href="https://docs.goakt.dev/actor/behaviors">behaviors</a> that switch the message handler as the process advances, and <a href="https://docs.goakt.dev/actor/stashing">stashing</a> to defer messages that arrive too early.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>Security and threat detection</h3>
-          <ul>
-            <li><strong>Intrusion detection</strong>: process log and telemetry streams in real time, one actor per source, and escalate suspicious activity through the actor hierarchy.</li>
-            <li><strong>Bot and DDoS mitigation</strong>: throttle abusive traffic with per-client actors that count, rate-limit, and expire through passivation.</li>
-            <li><strong>Transaction validation</strong>: run validation and consensus steps as isolated actors so one poisoned input cannot corrupt shared state.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>AI and machine learning</h3>
-          <ul>
-            <li><strong>Distributed training coordination</strong>: coordinate workers across a cluster with actor-based scheduling and <a href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point">reliable point-to-point delivery</a>.</li>
-            <li><strong>Real-time inference serving</strong>: pool model workers behind <a href="https://docs.goakt.dev/actor/routers">routers</a> and keep tail latency down with one request in flight per worker.</li>
-            <li><strong>Multi-agent systems</strong>: give every agent an actor with private state, a mailbox, and supervision; agents collaborate by exchanging typed messages.</li>
-          </ul>
-        </div>
-        <div class="case">
-          <h3>AI agents and MCP servers</h3>
-          <p>Actors map naturally onto agent runtimes: an agent is a unit of state, memory, and autonomy that talks to peers through messages. The <a href="https://docs.goakt.dev/ai-agents/overview">AI agents guide</a> makes the case feature by feature.</p>
-          <ul>
-            <li><strong>Agent coordination</strong>: spawn one actor per agent and let the actor hierarchy express delegation and oversight.</li>
-            <li><strong>Tool orchestration</strong>: manage concurrent MCP tools, databases, APIs, and knowledge sources as child actors, each supervised independently.</li>
-            <li><strong>Conversation management</strong>: hold each conversation in a grain that activates on the first message and passivates when the user goes quiet.</li>
-            <li><strong>Agent swarms</strong>: distribute reasoning across a cluster where agents delegate tasks to peers with location-transparent messaging.</li>
-            <li><strong>Resilient pipelines</strong>: supervision restarts a failed stage and <a href="https://docs.goakt.dev/actor/pipeto">PipeTo</a> feeds async results back into the flow.</li>
-          </ul>
-        </div>
+        <details class="card case">
+          <summary>
+            <h3>Distributed systems and microservices</h3>
+            <span class="case-sum">Stateful microservices &middot; Long-lived processes &middot; Service-to-service messaging &middot; Event-driven architectures</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Stateful microservices</strong>: keep state next to the compute with <a href="https://docs.goakt.dev/actor/actor-model">actors</a> or <a href="https://docs.goakt.dev/grains/overview">grains</a> and scale horizontally across a <a href="https://docs.goakt.dev/clustering/overview">cluster</a>, instead of round-tripping to a cache on every request.</li>
+              <li><strong>Long-lived processes</strong>: model workflows that outlive a single request; <a href="https://docs.goakt.dev/actor/supervision">supervision</a> restarts failed actors and <a href="https://docs.goakt.dev/actor/relocation">relocation</a> moves them when a node leaves the cluster.</li>
+              <li><strong>Service-to-service messaging</strong>: exchange typed messages asynchronously with <a href="https://docs.goakt.dev/actor/location-transparency">location transparency</a>; the caller does not care which process or node handles them.</li>
+              <li><strong>Event-driven architectures</strong>: build event sourcing and CQRS on <a href="https://docs.goakt.dev/meta-framework/ego">eGo</a>, which uses GoAkt for execution, supervision, clustering, and remoting.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>Real-time systems</h3>
+            <span class="case-sum">Financial market data &middot; Gaming servers &middot; IoT and edge computing &middot; Chat and presence</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Financial market data</strong>: fan price updates, risk checks, and order flow across <a href="https://docs.goakt.dev/actor/routers">routers</a> with per-instrument actors serializing access to hot state.</li>
+              <li><strong>Gaming servers</strong>: give each player session its own actor or grain; <a href="https://docs.goakt.dev/actor/passivation">passivation</a> reclaims memory when sessions go idle.</li>
+              <li><strong>IoT and edge computing</strong>: represent each device as a digital twin grain, activated on first message and addressable from anywhere in the cluster.</li>
+              <li><strong>Chat and presence</strong>: distribute conversations and notifications over <a href="https://docs.goakt.dev/advanced/pubsub">PubSub</a> topics that work the same in standalone and cluster mode.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>High-performance data processing</h3>
+            <span class="case-sum">Stream processing &middot; ETL pipelines &middot; Event-driven analytics</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Stream processing</strong>: run fraud detection, anomaly tracking, and alerting pipelines on <a href="https://docs.goakt.dev/advanced/streams">streams</a> backed by actor concurrency.</li>
+              <li><strong>ETL pipelines</strong>: spread batch workloads across worker actors with <a href="https://docs.goakt.dev/clustering/reliable-delivery/work-pulling">work pulling</a>, so fast workers take more of the load and slow ones are never overwhelmed.</li>
+              <li><strong>Event-driven analytics</strong>: subscribe actors to live <a href="https://docs.goakt.dev/advanced/event-streams">event streams</a> and compute on demand as events arrive.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>Fault-tolerant systems</h3>
+            <span class="case-sum">Self-healing applications &middot; High availability &middot; Replicated state</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Self-healing applications</strong>: <a href="https://docs.goakt.dev/actor/supervision">supervision trees</a> restart failing components with directives, restart budgets, and exponential backoff, while the rest of the system keeps serving.</li>
+              <li><strong>High availability</strong>: a <a href="https://docs.goakt.dev/clustering/overview">cluster</a> redistributes actors from a lost node to healthy peers through <a href="https://docs.goakt.dev/actor/relocation">relocation</a>, without an operator in the loop.</li>
+              <li><strong>Replicated state</strong>: share counters, sets, and maps across nodes with conflict-free <a href="https://docs.goakt.dev/advanced/distributed-data">distributed data</a> types that converge without coordination.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>Workflow orchestration and automation</h3>
+            <span class="case-sum">Business processes &middot; Background jobs &middot; Workflow engines</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Business processes</strong>: automate approval chains, payments, and order fulfilment as actors that hold each case's state; eGo adds <a href="https://docs.goakt.dev/meta-framework/ego">saga orchestration</a> when steps span services.</li>
+              <li><strong>Background jobs</strong>: the built-in <a href="https://docs.goakt.dev/actor/scheduling">scheduler</a> delivers a message once after a delay, on an interval, or on a cron expression, to a local or remote actor, with pause, resume, and cancel by reference. In a cluster, a cron schedule registered on every node <a href="https://docs.goakt.dev/actor/scheduling#cluster-wide-single-fire">fires once per tick</a>.</li>
+              <li><strong>Workflow engines</strong>: model multi-step processes with <a href="https://docs.goakt.dev/actor/behaviors">behaviors</a> that switch the message handler as the process advances, and <a href="https://docs.goakt.dev/actor/stashing">stashing</a> to defer messages that arrive too early.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>Security and threat detection</h3>
+            <span class="case-sum">Intrusion detection &middot; Bot and DDoS mitigation &middot; Transaction validation</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Intrusion detection</strong>: process log and telemetry streams in real time, one actor per source, and escalate suspicious activity through the actor hierarchy.</li>
+              <li><strong>Bot and DDoS mitigation</strong>: throttle abusive traffic with per-client actors that count, rate-limit, and expire through passivation.</li>
+              <li><strong>Transaction validation</strong>: run validation and consensus steps as isolated actors so one poisoned input cannot corrupt shared state.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>AI and machine learning</h3>
+            <span class="case-sum">Distributed training coordination &middot; Real-time inference serving &middot; Multi-agent systems</span>
+          </summary>
+          <div class="case-body">
+            <ul>
+              <li><strong>Distributed training coordination</strong>: coordinate workers across a cluster with actor-based scheduling and <a href="https://docs.goakt.dev/clustering/reliable-delivery/point-to-point">reliable point-to-point delivery</a>.</li>
+              <li><strong>Real-time inference serving</strong>: pool model workers behind <a href="https://docs.goakt.dev/actor/routers">routers</a> and keep tail latency down with one request in flight per worker.</li>
+              <li><strong>Multi-agent systems</strong>: give every agent an actor with private state, a mailbox, and supervision; agents collaborate by exchanging typed messages.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="card case">
+          <summary>
+            <h3>AI agents and MCP servers</h3>
+            <span class="case-sum">Agent coordination &middot; Tool orchestration &middot; Conversation management &middot; Agent swarms &middot; Resilient pipelines</span>
+          </summary>
+          <div class="case-body">
+            <p>Actors map naturally onto agent runtimes: an agent is a unit of state, memory, and autonomy that talks to peers through messages. The <a href="https://docs.goakt.dev/ai-agents/overview">AI agents guide</a> makes the case feature by feature.</p>
+            <ul>
+              <li><strong>Agent coordination</strong>: spawn one actor per agent and let the actor hierarchy express delegation and oversight.</li>
+              <li><strong>Tool orchestration</strong>: manage concurrent MCP tools, databases, APIs, and knowledge sources as child actors, each supervised independently.</li>
+              <li><strong>Conversation management</strong>: hold each conversation in a grain that activates on the first message and passivates when the user goes quiet.</li>
+              <li><strong>Agent swarms</strong>: distribute reasoning across a cluster where agents delegate tasks to peers with location-transparent messaging.</li>
+              <li><strong>Resilient pipelines</strong>: supervision restarts a failed stage and <a href="https://docs.goakt.dev/actor/pipeto">PipeTo</a> feeds async results back into the flow.</li>
+            </ul>
+          </div>
+        </details>
       </div>
       <p class="cases-note">The <a href="https://github.com/Tochemey/goakt-examples">examples repository</a> has runnable projects for standalone, remoting, and cluster mode.</p>
     </div>
   </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: agents</span></div>
 
   <section id="agents" class="section">
     <div class="wrap">
@@ -416,28 +560,30 @@
         <p>On a message, an actor may send messages, create actors, and choose how it handles the next one. An agent step does the same three things: it calls tools and peers, spawns workers, and updates its memory and plan. GoAkt runs that step without a goroutine per agent, and the guide traces every claim to a documented feature.</p>
       </div>
       <div class="pillars">
-        <div class="pillar">
+        <div class="card pillar">
           <h3>Sessions the runtime manages</h3>
           <p>One <a href="https://docs.goakt.dev/grains/overview">grain</a> per conversation: activated on the first message, passivated when idle, claimed once across the cluster, relocated on node loss.</p>
         </div>
-        <div class="pillar">
+        <div class="card pillar">
           <h3>Model calls that never block</h3>
           <p><a href="https://docs.goakt.dev/actor/pipeto">PipeTo</a> runs the call off the message loop, and a deferred reply under <a href="https://docs.goakt.dev/grains/reentrancy">reentrancy</a> answers the caller when the model does.</p>
         </div>
-        <div class="pillar">
+        <div class="card pillar">
           <h3>Failure handled by the runtime</h3>
           <p>A failed call comes back as a message. A crashed handler goes to its <a href="https://docs.goakt.dev/actor/supervision">supervisor</a>, with a restart budget and backoff, and no other agent sees a half-finished mutation.</p>
         </div>
-        <div class="pillar">
+        <div class="card pillar">
           <h3>Multi-agent by construction</h3>
           <p>Orchestrators spawn and watch workers, <a href="https://docs.goakt.dev/clustering/reliable-delivery/work-pulling">work-pulling</a> keeps a job alive when its worker dies, and the same code runs in one process or a cluster.</p>
         </div>
       </div>
       <nav class="links" aria-label="AI Agents guide">
-        <a href="https://docs.goakt.dev/ai-agents/overview">Read the AI agents guide</a>
+        <a href="https://docs.goakt.dev/ai-agents/overview">Read the AI agents guide <span aria-hidden="true">&rarr;</span></a>
       </nav>
     </div>
   </section>
+
+  <div class="wrap divider" aria-hidden="true"><span>ref: benchmarks</span></div>
 
   <section id="benchmarks" class="section">
     <div class="wrap">
@@ -446,22 +592,22 @@
         <h2>Every figure reproduces from the repository.</h2>
       </div>
       <div class="tiles">
-        <div class="tile">
+        <div class="card tile">
           <div class="value">13.2M<small>msg/s</small></div>
           <div class="label">One actor, one sender</div>
           <div class="scenario">Contention-free dispatch: the per-message cost of Tell.</div>
         </div>
-        <div class="tile">
+        <div class="card tile">
           <div class="value">27.2M<small>msg/s</small></div>
           <div class="label">Eight actor pairs in parallel</div>
           <div class="scenario">Aggregate throughput, one private receiver per sender.</div>
         </div>
-        <div class="tile">
+        <div class="card tile">
           <div class="value">1.23<small>KB / actor</small></div>
           <div class="label">One million live actors</div>
           <div class="scenario">Resident memory per actor under sustained load.</div>
         </div>
-        <div class="tile">
+        <div class="card tile">
           <div class="value">609<small>B / grain</small></div>
           <div class="label">One million live grains</div>
           <div class="scenario">Resident memory per grain under sustained load.</div>
@@ -479,43 +625,75 @@
     </div>
   </section>
 
+  <div class="wrap divider" aria-hidden="true"><span>ref: start</span></div>
+
   <section id="start" class="section">
-    <div class="wrap close-grid">
-      <div class="section-head">
-        <p class="eyebrow">Start</p>
-        <h2>Paste the program above into main.go. Then three commands.</h2>
-        <nav class="links" aria-label="Resources">
-          <a href="https://docs.goakt.dev">Docs</a>
-          <a href="https://pkg.go.dev/github.com/tochemey/goakt/v4">API reference</a>
-          <a href="https://github.com/Tochemey/goakt/discussions">Discussions</a>
-          <a href="https://join.slack.com/t/oss-r2l2029/shared_invite/zt-42zcqua8y-unSUH0tFlOQzwT_smzYfOQ">Slack</a>
-          <a href="https://github.com/sponsors/Tochemey">Sponsor</a>
-        </nav>
-      </div>
-      <pre class="terminal"><code><span class="p">$</span> go mod init quickstart
+    <div class="wrap">
+      <p class="eyebrow">Start</p>
+      <div class="card callout start-box">
+        <div class="section-head">
+          <h2>Paste the program above into main.go. Then three commands.</h2>
+        </div>
+        <pre class="terminal"><code><span class="p">$</span> go mod init quickstart
 <span class="p">$</span> go get github.com/tochemey/goakt/v4
 <span class="p">$</span> go run .</code></pre>
+      </div>
     </div>
   </section>
 
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-inner">
+  <div class="wrap">
     <a class="brand" href="#" aria-label="GoAkt">
       <svg viewBox="0 0 90 30" role="img" aria-label="GoAkt">
         <path class="go" d="M10.46 24.43Q8.25 24.43 6.45 23.43Q4.66 22.43 3.6 20.51Q2.54 18.59 2.54 15.83V10.67Q2.54 6.52 4.87 4.3Q7.2 2.07 11.2 2.07Q15.16 2.07 17.32 4.17Q19.49 6.28 19.49 9.87V9.99H15.5V9.75Q15.5 8.61 15.02 7.69Q14.55 6.77 13.59 6.23Q12.64 5.69 11.2 5.69Q9.05 5.69 7.82 7.02Q6.59 8.34 6.59 10.61V15.89Q6.59 18.13 7.82 19.5Q9.05 20.87 11.26 20.87Q13.47 20.87 14.48 19.7Q15.5 18.53 15.5 16.75V16.44H10.4V13H19.49V24H15.74V21.94H15.19Q14.98 22.46 14.5 23.05Q14.02 23.63 13.07 24.03Q12.12 24.43 10.46 24.43Z M30.27 24.43Q28 24.43 26.19 23.51Q24.37 22.59 23.33 20.84Q22.29 19.09 22.29 16.63V16.14Q22.29 13.68 23.33 11.93Q24.37 10.18 26.19 9.26Q28 8.34 30.27 8.34Q32.54 8.34 34.36 9.26Q36.17 10.18 37.21 11.93Q38.26 13.68 38.26 16.14V16.63Q38.26 19.09 37.21 20.84Q36.17 22.59 34.36 23.51Q32.54 24.43 30.27 24.43ZM30.27 20.99Q32.05 20.99 33.22 19.84Q34.39 18.69 34.39 16.54V16.23Q34.39 14.08 33.23 12.93Q32.08 11.78 30.27 11.78Q28.49 11.78 27.32 12.93Q26.16 14.08 26.16 16.23V16.54Q26.16 18.69 27.32 19.84Q28.49 20.99 30.27 20.99Z"/>
         <path class="akt" d="M39.76 24 45.41 2.5H52.48L58.13 24H53.95L52.78 19.27H45.11L43.94 24ZM46.06 15.52H51.83L49.22 5.05H48.67Z M60.37 24V2.5H64.24V14.39H64.79L69.83 8.77H74.87L67.83 16.14L75.11 24H70.14L64.79 17.95H64.24V24Z M83.07 24Q81.56 24 80.63 23.06Q79.69 22.13 79.69 20.56V11.96H75.88V8.77H79.69V4.04H83.56V8.77H87.74V11.96H83.56V19.88Q83.56 20.81 84.42 20.81H87.37V24Z"/>
       </svg>
     </a>
-    <span>MIT licensed. &copy; 2026 Tochemey.</span>
-    <nav aria-label="Footer">
-      <a href="https://docs.goakt.dev">Docs</a>
-      <a href="https://pkg.go.dev/github.com/tochemey/goakt/v4">API</a>
-      <a href="https://github.com/Tochemey/goakt">GitHub</a>
-      <a href="https://github.com/Tochemey/goakt/discussions">Discussions</a>
-      <a href="https://github.com/Tochemey/goakt/security/advisories/new">Report a vulnerability</a>
+    <nav class="foot-grid" aria-label="Footer">
+      <div>
+        <p class="foot-title" id="foot-framework">Framework</p>
+        <ul aria-labelledby="foot-framework">
+          <li><a href="https://docs.goakt.dev/actor/actor-model">Actors</a></li>
+          <li><a href="https://docs.goakt.dev/grains/overview">Grains</a></li>
+          <li><a href="https://docs.goakt.dev/clustering/overview">Clustering</a></li>
+          <li><a href="https://docs.goakt.dev/advanced/streams">Streams</a></li>
+          <li><a href="https://docs.goakt.dev/advanced/observability">Observability</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-title" id="foot-learn">Learn</p>
+        <ul aria-labelledby="foot-learn">
+          <li><a href="https://docs.goakt.dev">Docs</a></li>
+          <li><a href="https://docs.goakt.dev/getting-started/quickstart">Quickstart</a></li>
+          <li><a href="https://pkg.go.dev/github.com/tochemey/goakt/v4">API reference</a></li>
+          <li><a href="https://github.com/Tochemey/goakt-examples">Examples</a></li>
+          <li><a href="https://docs.goakt.dev/ai-agents/overview">AI agents guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-title" id="foot-community">Community</p>
+        <ul aria-labelledby="foot-community">
+          <li><a href="https://github.com/Tochemey/goakt">GitHub</a></li>
+          <li><a href="https://github.com/Tochemey/goakt/discussions">Discussions</a></li>
+          <li><a href="https://join.slack.com/t/oss-r2l2029/shared_invite/zt-42zcqua8y-unSUH0tFlOQzwT_smzYfOQ">Slack</a></li>
+          <li><a href="https://github.com/sponsors/Tochemey">Sponsor</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot-title" id="foot-project">Project</p>
+        <ul aria-labelledby="foot-project">
+          <li><a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">Benchmark method</a></li>
+          <li><a href="https://github.com/Tochemey/goakt/discussions/1361">Feedback thread</a></li>
+          <li><a href="https://github.com/Tochemey/goakt/security/advisories/new">Report a vulnerability</a></li>
+        </ul>
+      </div>
     </nav>
+    <div class="foot-bottom">
+      <span>MIT licensed. &copy; 2026 GoAkt Team.</span>
+      <span class="foot-tag" aria-hidden="true">// distributed actor framework for Go</span>
+    </div>
   </div>
 </footer>
 
