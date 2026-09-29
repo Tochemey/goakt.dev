@@ -575,8 +575,8 @@ html:not(.js) .menu-btn { display: none; }
 .quote blockquote p { font-size: 1.05rem; line-height: 1.6; }
 .quote strong { font-weight: 600; }
 .quote figcaption { margin-top: 0.9rem; font-size: 0.85rem; color: var(--muted); }
-.quote figcaption a, .report-note a { color: var(--text); border-bottom: 1px solid var(--border-strong); }
-.quote figcaption a:hover, .report-note a:hover { color: var(--accent); border-color: var(--accent); }
+.quote figcaption a { color: var(--text); border-bottom: 1px solid var(--border-strong); }
+.quote figcaption a:hover { color: var(--accent); border-color: var(--accent); }
 .uses {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
