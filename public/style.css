@@ -875,6 +875,7 @@ html:not(.js) .menu-btn { display: none; }
   .why-row { grid-template-columns: 14rem minmax(0, 1fr); gap: 1.5rem; align-items: baseline; }
   .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile-lead { grid-column: 1 / -1; }
   .start-box { padding: 2.25rem 2rem; }
   .foot-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3rem; }
 }
@@ -927,7 +928,10 @@ html:not(.js) .menu-btn { display: none; }
 
   .modules { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
   .more { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* Three throughput tiles on the first row, two memory tiles on the second. */
+  .tiles { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .tile, .tile-lead { grid-column: span 2; }
+  .tile-mem { grid-column: span 3; }
   .bench-meta { grid-template-columns: max-content minmax(0, 1fr); gap: 3rem; align-items: start; }
   .tile { padding: 1.5rem 1.5rem 1.25rem; }
   .start-box { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; align-items: center; padding: 2.5rem 2.75rem; }

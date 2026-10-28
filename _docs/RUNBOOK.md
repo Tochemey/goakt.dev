@@ -85,18 +85,20 @@ An empty `messages` list is a pass.
 
 ### Refreshing the benchmark figures
 
-The three tiles and the run-facts row under them change together. Never update one without the others.
+The five tiles, the hero card and the run-facts row under the tiles change together. Never update one without the others.
 
-1. In the goakt repository, on a commit that is on `main`, run the three commands from `benchmark/doc.md`:
+1. In the goakt repository, on the release tag, run the five commands from `benchmark/doc.md`, one at a time on an idle machine:
 
 ```
+go test -run='^$' -bench='^BenchmarkTellPingPong$' -count=10 -benchmem ./benchmark/
 go test -run='^$' -bench='^BenchmarkTellSinglePair$' -count=10 ./benchmark/
 go test -run='^$' -bench='^BenchmarkTellPairwise$' -count=10 ./benchmark/
-go test -tags scale -run '^TestMillionActorsSustainedLoad$' -v ./benchmark/
+go test -tags=scale -run TestMillionActorsSustainedLoad -v -timeout 30m ./benchmark/
+go test -tags=scale -run TestMillionGrainsSustainedLoad -v -timeout 30m ./benchmark/
 ```
 
-2. Take the median `messages/sec` of the ten runs for the first two. Take `bytes/actor` from the scale test log for the third.
-3. In `public/index.html`, section `id="benchmarks"`, update the three `.value` figures, then the run-facts row: date, commit short hash and its link, hardware, Go version.
+2. Take the median `messages/sec` of the ten runs for the three throughput benchmarks and round it to whole millions: run-to-run spread is several million, so a decimal would claim precision the data does not have. For ping-pong, use the `pairs=8/inflight=100` case on an 8-thread machine, which is the shape of Akka's `pingPongMoreActorsThanCores` and Proto.Actor's in-process benchmark. Take `bytes/actor` and `bytes/grain` from the two scale test logs; both are measured right after spawning or activating, before the load runs.
+3. In `public/index.html`, section `id="benchmarks"`, update the five `.value` figures, then the run-facts row: date, release tag and its link to the GitHub release, hardware, Go version. Then update the four figures in the hero card.
 4. The page states no commands and no benchmark names on purpose. `benchmark/doc.md` in goakt is the source for those.
 
 ### Adding a production user
@@ -140,6 +142,6 @@ go test -tags scale -run '^TestMillionActorsSustainedLoad$' -v ./benchmark/
 - Mobile first. Base styles are one column; min-width queries at 560, 760, and 960px add columns. On phones the header holds the wordmark, the theme button, and a menu button. Without JavaScript the links render as a plain row.
 - Section order: hero, code, features, production, what is in the box, use cases, AI agents, benchmarks, start. AI agents sits after the use cases so the general fit comes before the specific one, and links to the AI agents guide on docs.goakt.dev.
 - Benchmark tiles show only the value, a label, and one line of scenario. Commands and benchmark names live in `benchmark/doc.md`, so they cannot drift.
-- Nothing on the page goes stale on its own: no release numbers, no star counts. Only the benchmark row carries a date, and it says which commit it came from.
+- Nothing on the page goes stale on its own: no star counts, and no release numbers outside the benchmark row. That row carries a date and names the release the figures were measured on.
 - Relative links only, so the page works at the `tochemey.github.io/goakt.dev` staging path as well as at the apex.
 - Every claim traces to a docs page. "Where it does not fit" lists only limits the docs state.
