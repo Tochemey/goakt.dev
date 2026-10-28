@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script>
     (function () {
       document.documentElement.classList.add("js");
@@ -95,10 +95,10 @@
       <div class="card stats">
         <p class="eyebrow">By the numbers</p>
         <dl class="stat-list">
-          <div><dt>One actor, one sender</dt><dd>13.2M<small>msg/s</small></dd></div>
-          <div><dt>Eight actor pairs in parallel</dt><dd>27.2M<small>msg/s</small></dd></div>
-          <div><dt>Per actor, one million live</dt><dd>1.23<small>KB</small></dd></div>
-          <div><dt>Per grain, one million live</dt><dd>609<small>B</small></dd></div>
+          <div><dt>Actor-to-Actor ping-pong</dt><dd>67M<small>msg/s</small></dd></div>
+          <div><dt>One actor, one sender</dt><dd>23M<small>msg/s</small></dd></div>
+          <div><dt>Per actor, one million live</dt><dd>1.41<small>KB</small></dd></div>
+          <div><dt>Per grain, one million live</dt><dd>641<small>B</small></dd></div>
         </dl>
         <a class="card-link" href="#benchmarks">Run details and method <span aria-hidden="true">&#8595;</span></a>
       </div>
@@ -591,33 +591,38 @@
         <h2>Every figure reproduces from the repository.</h2>
       </div>
       <div class="tiles">
+        <div class="card tile tile-lead">
+          <div class="value">67M<small>msg/s</small></div>
+          <div class="label">Actor-to-Actor ping-pong</div>
+          <div class="scenario">Eight actor pairs, 100 messages in flight each. Every request and reply counts.</div>
+        </div>
         <div class="card tile">
-          <div class="value">13.2M<small>msg/s</small></div>
+          <div class="value">23M<small>msg/s</small></div>
           <div class="label">One actor, one sender</div>
           <div class="scenario">Contention-free dispatch: the per-message cost of Tell.</div>
         </div>
         <div class="card tile">
-          <div class="value">27.2M<small>msg/s</small></div>
+          <div class="value">49M<small>msg/s</small></div>
           <div class="label">Eight actor pairs in parallel</div>
           <div class="scenario">Aggregate throughput, one private receiver per sender.</div>
         </div>
-        <div class="card tile">
-          <div class="value">1.23<small>KB / actor</small></div>
+        <div class="card tile tile-mem">
+          <div class="value">1.41<small>KB / actor</small></div>
           <div class="label">One million live actors</div>
-          <div class="scenario">Resident memory per actor under sustained load.</div>
+          <div class="scenario">Heap per actor after spawning one million.</div>
         </div>
-        <div class="card tile">
-          <div class="value">609<small>B / grain</small></div>
+        <div class="card tile tile-mem">
+          <div class="value">641<small>B / grain</small></div>
           <div class="label">One million live grains</div>
-          <div class="scenario">Resident memory per grain under sustained load.</div>
+          <div class="scenario">Heap per grain after activating one million.</div>
         </div>
       </div>
       <div class="bench-meta">
         <dl class="run">
-          <div><dt>Run</dt><dd>2026-09-11</dd></div>
-          <div><dt>Commit</dt><dd><a href="https://github.com/Tochemey/goakt/commit/4eec50ab">4eec50ab</a></dd></div>
+          <div><dt>Run</dt><dd>2026-10-28</dd></div>
+          <div><dt>Release</dt><dd><a href="https://github.com/Tochemey/goakt/releases/tag/v4.6.4">v4.6.4</a></dd></div>
           <div><dt>Hardware</dt><dd>Apple M1, 8 threads</dd></div>
-          <div><dt>Go</dt><dd>1.27.1</dd></div>
+          <div><dt>Go</dt><dd>1.27.3</dd></div>
         </dl>
         <p class="bench-note">Throughput figures are the median of ten runs. Memory figures are resident heap per actor and per grain after spawning one million actors or activating one million grains. Commands and methodology are in <a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">benchmark/doc.md</a>.</p>
       </div>
