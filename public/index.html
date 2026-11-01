@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=8">
   <script>
     (function () {
       document.documentElement.classList.add("js");
@@ -95,10 +95,10 @@
       <div class="card stats">
         <p class="eyebrow">By the numbers</p>
         <dl class="stat-list">
-          <div><dt>Actor-to-Actor ping-pong</dt><dd>67M<small>msg/s</small></dd></div>
-          <div><dt>One actor, one sender</dt><dd>23M<small>msg/s</small></dd></div>
-          <div><dt>Per actor, one million live</dt><dd>1.41<small>KB</small></dd></div>
-          <div><dt>Per grain, one million live</dt><dd>641<small>B</small></dd></div>
+          <div><dt>Actor-to-Actor ping-pong, 64 cores</dt><dd>602M<small>msg/s</small></dd></div>
+          <div><dt>Actor pairs in parallel, 64 cores</dt><dd>180M<small>msg/s</small></dd></div>
+          <div><dt>Per idle actor, live heap</dt><dd>1.04<small>KB</small></dd></div>
+          <div><dt>Per idle grain, live heap</dt><dd>398<small>B</small></dd></div>
         </dl>
         <a class="card-link" href="#benchmarks">Run details and method <span aria-hidden="true">&#8595;</span></a>
       </div>
@@ -182,7 +182,7 @@
       <div class="section-head">
         <p class="eyebrow">Your first actor</p>
         <h2>One struct, one Receive method, one message at a time.</h2>
-        <p>This is the whole program from the quickstart. Nothing is elided.</p>
+        <p>This is the actor from the quickstart: its messages and its behavior. Nothing is elided.</p>
       </div>
       <div class="code-grid">
         <aside class="annot">
@@ -195,25 +195,16 @@
             <p><code>greeted</code> is touched only inside <code>Receive</code>, and an actor handles one message at a time.</p>
           </div>
           <div>
-            <h3>Ask waits for the reply</h3>
-            <p><code>goakt.Ask</code> sends, waits up to the timeout, and hands back whatever the actor answered with <code>ctx.Response</code>.</p>
+            <h3>Replies go through the context</h3>
+            <p><code>ctx.Response</code> answers the caller. <code>ctx.Unhandled</code> flags any message the actor does not expect.</p>
           </div>
           <p><a href="https://docs.goakt.dev/getting-started/quickstart">Full quickstart &#8599;</a></p>
         </aside>
         <figure class="code">
-          <figcaption><span class="dot"></span>main.go</figcaption>
+          <figcaption><span class="dot"></span>greeter.go</figcaption>
 <pre><code><span class="k">package</span> main
 
-<span class="k">import</span> (
-    <span class="s">"context"</span>
-    <span class="s">"os"</span>
-    <span class="s">"os/signal"</span>
-    <span class="s">"syscall"</span>
-    <span class="s">"time"</span>
-
-    goakt <span class="s">"github.com/tochemey/goakt/v4/actor"</span>
-    <span class="s">"github.com/tochemey/goakt/v4/log"</span>
-)
+<span class="k">import</span> goakt <span class="s">"github.com/tochemey/goakt/v4/actor"</span>
 
 <span class="c">// Greet asks the actor to greet someone; Greeting is its reply.</span>
 <span class="k">type</span> <span class="t">Greet</span> <span class="k">struct</span>{ Name <span class="t">string</span> }
@@ -240,39 +231,7 @@
     }
 }
 
-<span class="k">func</span> (x *<span class="t">Greeter</span>) <span class="f">PostStop</span>(*goakt.<span class="t">Context</span>) <span class="t">error</span> { <span class="k">return</span> <span class="k">nil</span> }
-
-<span class="k">func</span> <span class="f">main</span>() {
-    ctx <span class="o">:=</span> context.<span class="f">Background</span>()
-    logger <span class="o">:=</span> log.DefaultLogger
-
-    system, err <span class="o">:=</span> goakt.<span class="f">NewActorSystem</span>(<span class="s">"quickstart"</span>, goakt.<span class="f">WithLogger</span>(logger))
-    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
-        logger.<span class="f">Fatal</span>(err)
-    }
-
-    <span class="k">if</span> err <span class="o">:=</span> system.<span class="f">Start</span>(ctx); err <span class="o">!=</span> <span class="k">nil</span> {
-        logger.<span class="f">Fatal</span>(err)
-    }
-
-    pid, err <span class="o">:=</span> system.<span class="f">Spawn</span>(ctx, <span class="s">"greeter"</span>, &amp;<span class="t">Greeter</span>{})
-    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
-        logger.<span class="f">Fatal</span>(err)
-    }
-
-    response, err <span class="o">:=</span> goakt.<span class="f">Ask</span>(ctx, pid, &amp;<span class="t">Greet</span>{Name: <span class="s">"World"</span>}, time.Second)
-    <span class="k">if</span> err <span class="o">!=</span> <span class="k">nil</span> {
-        logger.<span class="f">Fatal</span>(err)
-    }
-
-    logger.<span class="f">Info</span>(response.(*<span class="t">Greeting</span>).Message)
-
-    sig <span class="o">:=</span> <span class="f">make</span>(<span class="k">chan</span> os.<span class="t">Signal</span>, <span class="n">1</span>)
-    signal.<span class="f">Notify</span>(sig, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
-    <span class="o">&lt;-</span>sig
-
-    _ = system.<span class="f">Stop</span>(ctx)
-}</code></pre>
+<span class="k">func</span> (x *<span class="t">Greeter</span>) <span class="f">PostStop</span>(*goakt.<span class="t">Context</span>) <span class="t">error</span> { <span class="k">return</span> <span class="k">nil</span> }</code></pre>
         </figure>
       </div>
     </div>
@@ -589,58 +548,55 @@
       <div class="section-head">
         <p class="eyebrow">Numbers</p>
         <h2>Every figure reproduces from the repository.</h2>
+        <p>Measured on 8, 32, and 64 cores. Messaging between actors keeps scaling as cores are added.</p>
       </div>
       <div class="tiles">
         <div class="card tile tile-lead">
-          <div class="value">67M<small>msg/s</small></div>
-          <div class="label">Actor-to-Actor ping-pong</div>
-          <div class="scenario">Eight actor pairs, 100 messages in flight each. Every request and reply counts.</div>
+          <div class="value">602M<small>msg/s</small></div>
+          <div class="label">Actor-to-Actor ping-pong, 64 cores</div>
+          <div class="scenario">One actor pair per core, 100 messages in flight each. Every request and reply counts.</div>
         </div>
         <div class="card tile">
-          <div class="value">23M<small>msg/s</small></div>
-          <div class="label">One actor, one sender</div>
+          <div class="value">180M<small>msg/s</small></div>
+          <div class="label">Actor pairs in parallel, 64 cores</div>
+          <div class="scenario">One message in flight per pair, so every message wakes an idle actor.</div>
+        </div>
+        <div class="card tile">
+          <div class="value">21M<small>msg/s</small></div>
+          <div class="label">One actor, one sender, 8 cores</div>
           <div class="scenario">Contention-free dispatch: the per-message cost of Tell.</div>
         </div>
-        <div class="card tile">
-          <div class="value">49M<small>msg/s</small></div>
-          <div class="label">Eight actor pairs in parallel</div>
-          <div class="scenario">Aggregate throughput, one private receiver per sender.</div>
+        <div class="card tile tile-mem">
+          <div class="value">1.04<small>KB / actor</small></div>
+          <div class="label">Idle actors</div>
+          <div class="scenario">Live heap per actor after a full collection, with 50,000 spawned.</div>
         </div>
         <div class="card tile tile-mem">
-          <div class="value">1.41<small>KB / actor</small></div>
-          <div class="label">One million live actors</div>
-          <div class="scenario">Heap per actor after spawning one million.</div>
+          <div class="value">398<small>B / grain</small></div>
+          <div class="label">Idle grains</div>
+          <div class="scenario">Live heap per grain after a full collection, with 50,000 activated.</div>
         </div>
-        <div class="card tile tile-mem">
-          <div class="value">641<small>B / grain</small></div>
-          <div class="label">One million live grains</div>
-          <div class="scenario">Heap per grain after activating one million.</div>
-        </div>
+      </div>
+      <div class="card scaling">
+        <table>
+          <caption>Ping-pong throughput as cores are added, in msg/s, with one actor pair per core.</caption>
+          <thead>
+            <tr><th scope="col">In flight per pair</th><th scope="col">8 cores</th><th scope="col">32 cores</th><th scope="col">64 cores</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">100 messages</th><td>143M</td><td>331M</td><td>602M</td></tr>
+            <tr><th scope="row">1 message</th><td>48M</td><td>94M</td><td>180M</td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="bench-meta">
         <dl class="run">
-          <div><dt>Run</dt><dd>2026-10-28</dd></div>
-          <div><dt>Release</dt><dd><a href="https://github.com/Tochemey/goakt/releases/tag/v4.6.4">v4.6.4</a></dd></div>
-          <div><dt>Hardware</dt><dd>Apple M1, 8 threads</dd></div>
+          <div><dt>Run</dt><dd>2026-11-01</dd></div>
+          <div><dt>Release</dt><dd><a href="https://github.com/Tochemey/goakt/releases/tag/v4.6.7">v4.6.7</a></dd></div>
+          <div><dt>Hardware</dt><dd>AWS c7a, 8 / 32 / 64 cores</dd></div>
           <div><dt>Go</dt><dd>1.27.3</dd></div>
         </dl>
-        <p class="bench-note">Throughput figures are the median of ten runs. Memory figures are resident heap per actor and per grain after spawning one million actors or activating one million grains. Commands and methodology are in <a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">benchmark/doc.md</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap divider" aria-hidden="true"><span>ref: start</span></div>
-
-  <section id="start" class="section">
-    <div class="wrap">
-      <p class="eyebrow">Start</p>
-      <div class="card callout start-box">
-        <div class="section-head">
-          <h2>Paste the program above into main.go. Then three commands.</h2>
-        </div>
-        <pre class="terminal"><code><span class="p">$</span> go mod init quickstart
-<span class="p">$</span> go get github.com/tochemey/goakt/v4
-<span class="p">$</span> go run .</code></pre>
+        <p class="bench-note">Each figure is the median of ten runs on a dedicated AMD EPYC 9R14 instance, labelled with its core count. Memory figures are the live heap after a full collection, divided by 50,000 idle actors or grains. In the ping-pong, ring, fork-join, and many-to-many scenarios, GoAkt allocates nothing per message. Commands, methodology, and the comparison with Ergo, Proto.Actor, and Hollywood are in <a href="https://github.com/Tochemey/goakt-examples/tree/main/goakt-benchmarks">goakt-benchmarks</a>.</p>
       </div>
     </div>
   </section>
@@ -688,7 +644,7 @@
       <div>
         <p class="foot-title" id="foot-project">Project</p>
         <ul aria-labelledby="foot-project">
-          <li><a href="https://github.com/Tochemey/goakt/blob/main/benchmark/doc.md">Benchmark method</a></li>
+          <li><a href="https://github.com/Tochemey/goakt-examples/tree/main/goakt-benchmarks">Benchmark method</a></li>
           <li><a href="https://github.com/Tochemey/goakt/discussions/1361">Feedback thread</a></li>
           <li><a href="https://github.com/Tochemey/goakt/security/advisories/new">Report a vulnerability</a></li>
         </ul>
