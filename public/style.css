@@ -912,7 +912,7 @@ html:not(.js) .menu-btn { display: none; }
   .hero h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); }
   .lede { font-size: 1.125rem; }
 
-  .flow { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+  .flow { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; align-items: start; }
   .diagram { max-width: none; }
 
   .code-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 3rem; }
