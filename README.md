@@ -41,5 +41,5 @@ Then open <http://localhost:8080>.
 - Relative links only, so the page works at the staging URL and at goakt.dev.
 - The stylesheet link carries a version, `style.css?v=N`. Raise N whenever style.css changes, so a browser never pairs the new page with a cached stylesheet.
 - Every claim on the page traces to a page on docs.goakt.dev.
-- Benchmark figures come from one `make bench` run in [goakt-examples/goakt-benchmarks](https://github.com/Tochemey/goakt-examples/tree/main/goakt-benchmarks), whose `RESULTS-*.md` files hold the full tables. Update the date, release, hardware, and Go version together with the numbers. The card in the hero repeats four of the five tile figures, so change both places together.
+- Benchmark figures come from one `make bench` run in [goakt-benchmarks](https://github.com/Tochemey/goakt-benchmarks), whose `RESULTS-*.md` files hold the full tables. Update the date, release, hardware, and Go version together with the numbers. The card in the hero repeats four of the five tile figures, so change both places together.
 - Brand assets are copies of `docs/assets` in the goakt repository.
